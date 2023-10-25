@@ -62,7 +62,7 @@
                  </div>
 
         <div class="mb-3 mx-sm-2">
-        <label for="exampleInputNumber2" class="form-label">Product Stock</label>
+        <label for="exampleInputNumber2" class="form-label">Inhouse Stock</label>
         <input type="number" class="form-control"  value="{{ old('stock') }}" id="exampleInputNumber2" name="stock" placeholder="70..">
         @error('stock')
 
@@ -70,6 +70,8 @@
 
         @enderror
         </div>
+
+        
 
         <div class="mb-3 mx-sm-2">
             <label for="exampleInputNumber" class="form-label">Product Price</label>

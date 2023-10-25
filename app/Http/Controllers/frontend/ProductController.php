@@ -93,14 +93,11 @@ class ProductController extends Controller
 
 
 
-        $admins = User::where('role', 'admin')->get(); // Assuming 'User' is your admin model
-         Notification::send($admins, new OrderReceivedNotification($order));
 
-    $order->save();
 
         session()->forget('cart');
 
-        Alert::toast()->success('Success, Order Confirmed!');
+        notify()->success('Success, Order Confirmed!');
 
         return redirect()->route('home');
 

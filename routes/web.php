@@ -65,11 +65,6 @@ Route::get('/view-cart',[AddToCartController::class,'viewCart']);
 Route::get('/clear-cart',[AddToCartController::class,'clearCart'])->name('cart.clear');
 Route::get('/cart-item/delete/{id}',[AddToCartController::class,'cartItemDelete'])->name('cart.item.delete');
 
-//Wishlist
-// Route::get('/wishlist', [WishlistController::class, 'wishlist'])->name('wishlist.index');
-// Route::post('/wishlist', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
-// Route::delete('/wishlist/{id}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
-
 //Backend
 
 //Login
@@ -168,10 +163,5 @@ Route::get('/report/search',[ReportController::class,'reportSearch'])->name('ord
 Route::get('/contact-list',[ContactController::class,'contactlist'])->name('contact.list');
 Route::get('/contact-view/{id}',[ContactController::class,'contactview'])->name('contact.view');
 
-//Shop
-Route::get('/shopForm',[ShopController::class,'shopForm'])->name('shop.form');
-Route::post('/shopStore',[ShopController::class,'shopStore'])->name('shop.store');
-//distribute
-Route::get('/distributeForm',[ShopController::class,'distributeForm'])->name('distribute.form');
-Route::post('/distribute-Store',[ShopController::class,'distributeStore'])->name('distribute.store');
+
 });
