@@ -25,7 +25,7 @@
                 @foreach ($latestProducts as $item)
                 <div class="col-lg-3">
                     <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
-                        <a href="{{url('/product-details',$item->id)}}"> <img src="{{ asset('/public/uploads/' . $item->image) }}" alt="Product Image"></a>
+                        <a href="{{url('/product-details',$item->id)}}"> <img src="{{ asset('/uploads/' . $item->image) }}" alt="Product Image"></a>
                         <h5><a href="{{ url('/product-details',$item->id) }}">{{ $item->name }}</a></h5>
 
                     </div>

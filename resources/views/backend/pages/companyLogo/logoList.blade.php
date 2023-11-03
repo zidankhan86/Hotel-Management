@@ -26,7 +26,7 @@
 
 
         <th scope="row">{{ $serial++}}</th>
-        <td><img height="100px" width="100px" src="{{url('/public/uploads/'.$item->image)}}" alt=""></td>
+        <td><img height="100px" width="100px" src="{{url('/uploads/'.$item->image)}}" alt=""></td>
         <td>{{ $item->tittle}}</td>
 
         <td>

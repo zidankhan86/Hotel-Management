@@ -19,7 +19,7 @@
                             <img class="product__details__pic__item--large"
 
 
-                                src="{{ asset('/public/uploads/' . $details->image) }}" alt="">
+                                src="{{ asset('/uploads/' . $details->image) }}" alt="">
 
 
                         </div>

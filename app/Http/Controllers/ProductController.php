@@ -40,11 +40,8 @@ class ProductController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $images=null;
-        if ($request->hasFile('image')) {
-            $images=date('Ymdhsis').'.'.$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->storeAs('uploads', $images, 'public');
-        }
+        $images = time() . '.' . $request->file('image')->extension();
+         $request->file('image')->move(public_path('uploads'), $images);
         //dd($imageName);
         // dd($request->all());
 
@@ -100,19 +97,12 @@ class ProductController extends Controller
 
         //dd($request->all());
 
-        $imageName=null;
-        if ($request->hasFile('image')) {
-            $imageName=date('Ymdhsis').'.'.$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->storeAs('uploads', $imageName, 'public');
-
-
-           // dd($imageName);
-        }
+        $images = time() . '.' . $request->file('image')->extension(); $request->file('image')->move(public_path('uploads'), $images);
 
               NewArrival::create([
 
              "name"=>$request->name,
-             "image"=>$imageName,
+             "image"=>$images,
              "weight"=>$request->weight,
              "stock"=>$request->stock,
              "price"=>$request->price,
