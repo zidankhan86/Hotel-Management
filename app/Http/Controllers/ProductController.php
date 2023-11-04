@@ -97,7 +97,8 @@ class ProductController extends Controller
 
         //dd($request->all());
 
-        $images = time() . '.' . $request->file('image')->extension(); $request->file('image')->move(public_path('uploads'), $images);
+        $images = time() . '.' . $request->file('image')->extension();
+         $request->file('image')->move(public_path('uploads'), $images);
 
               NewArrival::create([
 

@@ -31,11 +31,8 @@ class HeroBannerController extends Controller
         return back()->with('error', 'Maximum number of banners reached');
     }
 
-    $imageName=null;
-        if ($request->hasFile('image')) {
-            $imageName=date('Ymdhsis').'.'.$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->storeAs('uploads', $imageName, 'public');
-        }
+    $imageName = time() . '.' . $request->file('image')->extension();
+         $request->file('image')->move(public_path('uploads'), $imageName);
 
        // dd($imageName);
         //dd($request->all());
