@@ -47,10 +47,10 @@ class HomeController extends Controller
           $productRatings =ProductRating::all();
 
 
-         return view('frontend.pages.home',
-         compact('categories','products','latestProducts',
-        'latestCategories','blogs','banners','heroBanners',
-        'bannersTwo','bannersOne','subcategories','productRatings'));
+          return view('frontend.pages.home',compact('categories','products','latestProducts',
+                                                    'latestCategories','blogs','banners',
+                                                    'heroBanners','bannersTwo','bannersOne',
+                                                    'subcategories','productRatings'));
     }
 
        public function categoryWiseProduct($id){

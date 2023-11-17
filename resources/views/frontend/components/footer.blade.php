@@ -8,9 +8,9 @@
                         <a href="{{ route('home') }}"><img src="{{url('frontend/img/logo.png')}}" alt=""></a>
                     </div>
                     <ul>
-                        <li>Address: </li>
-                        <li>Phone: 01711-004311</li>
-                        <li>Email: nongor.food@gmail.com</li>
+                        <li>Address: Uttara, Sector 10, Dhaka </li>
+                        <li>Phone: 01711-000000</li>
+                        <li>Email: eCommerce.com</li>
                     </ul>
                 </div>
             </div>
@@ -44,10 +44,10 @@
                         <button type="submit" class="site-btn">Subscribe</button>
                     </form>
                     <div class="footer__widget__social">
-                        <a href="https://www.facebook.com/nongorfoodbd"><i class="fa fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/nongorfood/"><i class="fa fa-instagram"></i></a>
-                        <a href="https://twitter.com/nongorfood"><i class="fa fa-twitter"></i></a>
-                        <a href="https://www.youtube.com/channel/UC-0rsi0dXMF_k1zKjXZOAqw"><i class="fa fa-youtube"></i></a>
+                        <a><i class="fa fa-facebook"></i></a>
+                        <a><i class="fa fa-instagram"></i></a>
+                        <a><i class="fa fa-twitter"></i></a>
+                        <a><i class="fa fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
             <div class="col-lg-12">
                 <div class="footer__copyright">
                     <div class="footer__copyright__text"><p>
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved  by DTerms Limited
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved  by IUBAT
 </p></div>
                     <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
                 </div>

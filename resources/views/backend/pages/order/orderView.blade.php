@@ -32,7 +32,7 @@
           <div class="col-md-12">
             <div class="text-center">
 
-              <p class="pt-0">nongorfood.com</p>
+              <p class="pt-0">eCommerce.com</p>
             </div>
 
           </div>
