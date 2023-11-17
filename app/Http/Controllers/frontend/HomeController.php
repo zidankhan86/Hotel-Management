@@ -66,4 +66,8 @@ class HomeController extends Controller
 
         return view('frontend.pages.catWizeProduct.categoryWizeProduct',compact('products','category'));
     }
+
+    public function about(){
+        return view('frontend.pages.aboutUs');
+    }
 }

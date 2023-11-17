@@ -39,6 +39,8 @@ use App\Http\Controllers\ShopController;
 
 
 Route::get('/',[FrontendHomeController::class,'home'])->name('home');
+//About us
+Route::get('/about-us',[FrontendHomeController::class,'about'])->name('about.us');
 //hero
 Route::get('/hero',[HeroBannerController::class,'hero']);
 //product

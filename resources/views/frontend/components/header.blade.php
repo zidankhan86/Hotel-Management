@@ -72,6 +72,7 @@
                         <li><a href="{{url('/product')}}">Shop</a></li>
                         <li><a href="{{url('/blog-page')}}">Blog</a></li>
                         <li><a href="{{url('/contact')}}">Contact</a></li>
+                        <li><a href="{{route('about.us')}}">About us</a></li>
                     </ul>
                 </nav>
             </div>
