@@ -2,6 +2,9 @@
 
 @section('content')
 
+<div class="container">
+    <div class="container">
+        <div class="container">
 <br><h4 class=" text-success text-center">Category Form</h4>
 
 <form action="{{route('category.store')}}" method="POST" enctype="multipart/form-data">
@@ -55,7 +58,7 @@
       </div>
 
   </form>
-
+</div></div></div>
 
 
 @endsection

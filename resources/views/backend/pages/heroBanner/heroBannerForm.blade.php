@@ -2,6 +2,10 @@
 
 @section('content')
 
+<div class="container">
+    <div class="container">
+        <div class="container">
+
 <br><h4 class=" text-success text-center">Hero Banner Form</h4>
 
 <form action="{{route('hero.store')}}" method="POST" enctype="multipart/form-data">
@@ -65,6 +69,9 @@
 
   </form>
 
+</div>
+</div>
+</div>
 
 
 @endsection

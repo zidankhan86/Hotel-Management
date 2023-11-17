@@ -23,7 +23,7 @@
 
 
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"  aria-controls="collapsePages">
-                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-shopping-bag"></i></div>
                     Product
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -34,32 +34,28 @@
 
                           <a class="nav-link" href="{{route('product.list')}}">Product</a>
 
-                        {{-- <a class="nav-link collapsed" href="{{route('new.arrival.product.list')}}">
-                            New Arrival
-
-                        </a> --}}
+                        
 
                     </nav>
 
                 </div>
 
                 <a class="nav-link" href="{{route('order.list')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-clipboard"></i></div>
                     Orders
                 </a>
-                <a class="nav-link" href="{{route('logo.list')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                   Company Logo
-                </a>
+                
 
                 <a class="nav-link" href="{{route('hero.list')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-flag"></i>
+                    </div>
                     Hero Banner
                 </a>
 
 
                 <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapseBanners" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-flag"></i>
+                    </div>
                     Banners
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -78,17 +74,17 @@
                 </div>
 
                 <a class="nav-link" href="{{route('blog.list')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-pen"></i></div>
                     Blogs
                 </a>
 
                 <a class="nav-link" href="{{route('contact.list')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-comment"></i></div>
                     User Feedback
                 </a>
 
                 <a class="nav-link" href="{{route('report')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-print"></i></div>
                     Print Report
                 </a>
             </div>

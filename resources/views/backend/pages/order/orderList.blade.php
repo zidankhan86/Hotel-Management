@@ -2,7 +2,13 @@
 
 @section('content')
 
-<br>
+<div class="container">
+    <div class="container">
+        <div class="container">
+            <div class="container">
+                <div class="container">
+                    <div class="container">
+            <br>
 <h4 class="text-success text-center">Order List</h4>
 <br>
 
@@ -50,5 +56,12 @@
         @endforeach
     </tbody>
 </table>
+                        </div>
+                 </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 @endsection
