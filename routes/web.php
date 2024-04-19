@@ -61,7 +61,9 @@ Route::get('/admin-profile',[ProfileController::class,'adminProfile']);
 Route::get('/', [IndexController::class, 'dashboard'])->name('dashboard');
 Route::resource('room', RoomController::class);
 Route::resource('facilities', FacilitiesController::class);
+Route::get('/facilities-delete/{id}', [BannerController::class, 'bannerdelete'])->name('banner.delete');
 Route::resource('features', FeaturesController::class);
+Route::get('/features-delete/{id}', [BannerController::class, 'bannerDelete'])->name('banner.delete');
 Route::resource('setting', SettingController::class);
 
 Route::post('/banner-store', [BannerController::class, 'bannerStore'])->name('banner.store');

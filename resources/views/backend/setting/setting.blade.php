@@ -69,7 +69,7 @@
                         </td>
                           <td style="border: 1px solid #ddd; padding: 8px;">
                           <a href="" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                          <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                          <a href="{{route('banner.delete',$banner->id)}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                           
                           </td>
                         </tr>
