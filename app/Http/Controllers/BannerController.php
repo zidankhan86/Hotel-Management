@@ -38,7 +38,7 @@ class BannerController extends Controller
 
         ]);
 
-        return back()->with('success','Banner Uploaded Successfully!');
+        return back()->with('success','Hero banner Uploaded Successfully!');
 
     }
 
@@ -47,7 +47,7 @@ class BannerController extends Controller
 
     if ($banner) {
         $banner->delete();
-        return redirect()->back()->with('success', 'Banner deleted successfully!');
+        return redirect()->back()->with('success', 'Hero banner deleted successfully!');
     }
 
     return redirect()->back()->with('error', 'Banner not found.');
@@ -55,10 +55,6 @@ class BannerController extends Controller
     }
 
 
-public function bannerlist(){
-    $banners = Banner::all();
-    return view('backend.pages.banner.bannerList',compact('banners'));
-}
 
 public function banneredit($id){
 
@@ -82,8 +78,6 @@ public function banneredit($id){
 
    // dd($imageName);
     //dd($request->all());
-
-
 
     $update = Banner::find($id);
     $update->update([

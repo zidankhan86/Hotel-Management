@@ -27,6 +27,11 @@
 
     </div><br>
     <div class="col-lg-8">
+      @if(session('success'))
+      <div class="alert alert-success" role="alert">
+          <p>{{ session('success') }}</p>
+      </div>
+      @endif
         <div class="card">
             <div class="card">
                 <div class="card-body">
@@ -42,11 +47,7 @@
                     @else
 
                   </div>
-                  @if(session('success'))
-                  <div class="alert alert-success" role="alert">
-                      <p>{{ session('success') }}</p>
-                  </div>
-                  @endif
+                  
                     <table style="width: 100%; border-collapse: collapse;">
                       <thead><br>
                         <tr>
@@ -142,11 +143,6 @@
                     <h6>About Table</h6>
                   </div>
 
-                  @if(session('success'))
-                  <div class="alert alert-success" role="alert">
-                      <p>{{ session('success') }}</p>
-                  </div>
-                  @endif
                   
                     <table style="width: 100%; border-collapse: collapse;">
                         
