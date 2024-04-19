@@ -42,8 +42,11 @@
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->area}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->price}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->quantity}}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->status}}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;"><a href=""></a></td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->status == 1 ? 'Active':'Inactive'}}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><a href=""><i class="fas fa-edit"></i></a>
+          
+            <a href=""><i class="fas fa-trash"></i></a>
+          </td>
           
         </tr>
   
@@ -58,7 +61,7 @@
 {{--Modal --}}
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="max-width: 70%; width: 70%;">
+  <div class="modal-dialog" style="max-width: 60%; width: 60%;">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Add Room</h5>
