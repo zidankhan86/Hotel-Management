@@ -5,6 +5,11 @@
     <h4>Features</h4>
   </div>
 <div style="width: 1100px; border: 1px solid #ccc;  box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; margin: 20px;">
+  @if(session('success'))
+  <div class="alert alert-success" role="alert">
+      <p>{{ session('success') }}</p>
+  </div>
+  @endif
     <a href="" style="float: right;" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" >+Add</a><br>
     <table style="width: 100%; border-collapse: collapse;">
       <thead><br>

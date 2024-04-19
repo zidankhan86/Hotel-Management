@@ -2,39 +2,51 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\facilities;
-use App\Models\Features;
 use App\Models\Room;
-use App\Models\RoomFacilities;
+use App\Models\Features;
+use App\Models\facilities;
 use App\Models\RoomFeature;
 use Illuminate\Http\Request;
+use App\Models\RoomFacilities;
+use Illuminate\Support\Facades\Validator;
 
 class RoomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
         $features = Features::all();
         $facilities = facilities::all();
+        $rooms = Room::simplePaginate(8);
 
-        return view('backend.room.room-table', compact('features', 'facilities'));
+        return view('backend.room.room-table', compact('features', 'facilities','rooms'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            
+            'category_name' => 'required',
+            'area' => 'required',
+            'price' => 'required',
+            'quantity' => 'required',
+            'adult' => 'required',
+            'children' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            'status' => 'required',
+            'features_id' => 'nullable',
+            'facilities_id' => 'nullable',
+            
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+
         $imageName = null;
         if ($request->hasFile('image')) {
             $imageName = date('Ymdhis').'.'.$request->image->extension();
@@ -43,13 +55,14 @@ class RoomController extends Controller
 
         $room = Room::create([
             'category_name' => $request->category_name,
-            'area' => $request->area,
-            'price' => $request->price,
-            'quantity' => $request->quantity,
-            'adult' => $request->adult,
-            'children' => $request->children,
-            'description' => $request->description,
-            'image' => $imageName,
+            'area'          => $request->area,
+            'price'         => $request->price,
+            'quantity'      => $request->quantity,
+            'adult'         => $request->adult,
+            'children'      => $request->children,
+            'description'   => $request->description,
+            'image'         => $imageName,
+            'status'        => $request->status,
         ]);
 
         if ($request->has('features_id')) {
@@ -70,20 +83,11 @@ class RoomController extends Controller
             }
         }
 
-        return back();
+        return back()->with('success','Room Created successfully!!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Room $room)
-    {
-        //
-    }
+    
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Room $room)
     {
         //

@@ -3,19 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
-use App\Models\BannerOne;
-use App\Models\BannerTwo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class BannerController extends Controller
 {
-    public function bannerForm(){
-        return view('backend.pages.banner.bannerForm');
-    }
-
+   
     public function bannerStore(Request $request){
         $validator = Validator::make($request->all(), [
             'tittle' => 'nullable',

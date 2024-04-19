@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('children');
             $table->longText('description');
             $table->string('image')->nullable();
+            $table->boolean('status');
             $table->timestamps();
         });
 

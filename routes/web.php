@@ -10,7 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\HeroBannerController;
-
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,9 +62,8 @@ Route::get('/', [IndexController::class, 'dashboard'])->name('dashboard');
 Route::resource('room', RoomController::class);
 Route::resource('facilities', FacilitiesController::class);
 Route::resource('features', FeaturesController::class);
+Route::resource('setting', SettingController::class);
 
-
-Route::get('/banner', [BannerController::class, 'bannerForm'])->name('banner.form');
 Route::post('/banner-store', [BannerController::class, 'bannerStore'])->name('banner.store');
 
 

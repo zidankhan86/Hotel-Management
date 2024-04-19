@@ -8,14 +8,21 @@
 
 <div style="width: 200px;  padding: 10px; margin: 10px;">
     <h4>Rooms</h4>
+    
   </div>
 <div style="width: 1100px; border: 1px solid #ccc;  box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; margin: 20px;">
+  @if(session('success'))
+  <div class="alert alert-success" role="alert">
+      <p>{{ session('success') }}</p>
+  </div>
+  @endif
     <a href="" style="float: right;" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" >+Add</a><br>
     <table style="width: 100%; border-collapse: collapse;">
       <thead><br>
         <tr>
             <th style="padding: 8px; background-color: #0c0707; color: white;">#</th>
             <th style="padding: 8px; background-color: #0c0b0b; color: white;">Name</th>
+            <th style="padding: 8px; background-color: #0e0d0d; color: white;">Image</th>
             <th style="padding: 8px; background-color: #0f0d0d; color: white;">Area</th>
             <th style="padding: 8px; background-color: #0e0d0d; color: white;">Price</th>
             <th style="padding: 8px; background-color: #0e0d0d; color: white;">Quantity</th>
@@ -24,21 +31,34 @@
         </tr>
       </thead>
       <tbody>
+@foreach ($rooms as $room)
+
         <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;">1</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">Mark</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">Otto</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">@mdo</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->id}}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->category_name}}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <img height="50px" width="50px" src="{{url('/storage/uploads/'.$room->image)}}" alt="Room">
+            </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->area}}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->price}}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->quantity}}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->status}}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><a href=""></a></td>
+          
         </tr>
+  
+@endforeach
+
       </tbody>
     </table>
+    <p>{{$rooms->links()}}</p>
   </div>
 </body>
   
 {{--Modal --}}
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="max-width: 70%; width: 70%;">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Add Room</h5>
@@ -76,6 +96,14 @@
             <div class="col-md-6 mb-3">
               <label for="recipient-name" class="col-form-label">Children(Max.)</label>
               <input type="text" class="form-control" name="children" id="recipient-name">
+            </div>
+            <div class="col-md-12 mb-3">
+              <label for="recipient-name" class="col-form-label">Status</label>
+              <select name="status" id="" class="form-control">
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
+
+              </select>
             </div>
           </div>
 

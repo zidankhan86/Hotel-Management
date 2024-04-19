@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Features;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FeaturesController extends Controller
 {
@@ -16,37 +17,27 @@ class FeaturesController extends Controller
         return view('backend.features_and_facilities.features',compact('features'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            
+            'name' => 'required',
+            
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         Features::create([
             'name' => $request->name,
         ]);
 
-        return back();
+        return back()->with('success','Features created successfully!!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Features $features)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(Features $features)
     {
         //

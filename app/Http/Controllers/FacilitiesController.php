@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\facilities;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FacilitiesController extends Controller
 {
@@ -16,32 +17,29 @@ class FacilitiesController extends Controller
         return view('backend.features_and_facilities.facilities',compact('facilities'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request)
     {
 
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'description'  => 'required|max:500',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         facilities::create([
-            'name' => $request->name,
-            'description' => $request->description,
+            'name'          => $request->name,
+            'description'   => $request->description,
 
         ]);
 
-        return back();
+        return back()->with('success','Facilities created successfully!!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit( $id)
     {
         $facility =  facilities::findOrFail($id);;
