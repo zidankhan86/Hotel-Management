@@ -9,24 +9,14 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\FacilitiesController;
-use App\Http\Controllers\HeroBannerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 
 
 
-Route::get('/', [IndexController::class, 'dashboard'])->name('dashboard');
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/login-frontend', [LoginController::class, 'showLoginFormFrontend'])->name('login.frontend');
 //Registration
@@ -51,9 +41,11 @@ Route::group(['middleware' => 'customerAuth'], function () {
 //middleware auth and admin
 Route::group(['middleware' => 'auth','admin','prefix'=>'admin'], function () {
 
-    Route::get('/', function () {
+    Route::get('/admin', function () {
         return view('backend.index');
     });
+
+Route::get('/', [IndexController::class, 'dashboard'])->name('dashboard');   
 //profile
 Route::get('/profile',[ProfileController::class,'profile']);
 Route::get('/admin-profile',[ProfileController::class,'adminProfile']);
