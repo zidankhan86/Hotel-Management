@@ -100,9 +100,14 @@
                           <div class="row">
                             <div class="col-md-12 mb-3">
                               <label for="recipient-name" class="col-form-label">Hero Title*</label>
-                              <input type="text" class="form-control" id="recipient-name" name="tittle">
+                              <input type="text" class="form-control" id="recipient-name" name="tittle" required placeholder="Sea Paradise">
                             </div>
-                
+
+                            <div class="mb-3">
+                              <label for="message-text" class="col-form-label">Description</label>
+                              <textarea class="form-control" id="message-text" name="description" placeholder="Write long title here"></textarea>
+                            </div>
+
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">Choose an image*</label>
                                <input type="file" name="image" id="" class="form-control dropify">

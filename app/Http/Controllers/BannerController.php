@@ -12,8 +12,9 @@ class BannerController extends Controller
    
     public function bannerStore(Request $request){
         $validator = Validator::make($request->all(), [
-            'tittle' => 'nullable',
-            'image'  => 'required|max:500',
+            'description'   => 'required',
+            'tittle'        => 'nullable',
+            'image'         => 'required|max:500',
         ]);
 
         if ($validator->fails()) {
@@ -32,9 +33,9 @@ class BannerController extends Controller
         //dd($request->all());
 
         Banner::create([
-
-        "tittle"=>$request->tittle,
-        "image"=>$imageName
+        "description"   =>$request->description,
+        "tittle"        =>$request->tittle,
+        "image"         =>$imageName
 
         ]);
 
@@ -81,9 +82,9 @@ public function banneredit($id){
 
     $update = Banner::find($id);
     $update->update([
-
-        "tittle"=>$request->tittle,
-        "image"=>$imageName
+        "description"   =>$request->description,
+        "tittle"        =>$request->tittle,
+        "image"         =>$imageName
     ]);
 
 Alert::toast()->success('Banner Updated');

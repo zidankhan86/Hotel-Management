@@ -59,9 +59,9 @@
               <input type="text" class="form-control" id="recipient-name" name="name">
             </div>
 
-            <div class="mb-3">
+             <div class="mb-3">
                 <label for="message-text" class="col-form-label">Description</label>
-                <textarea class="form-control" id="message-text" name="description"></textarea>
+                <textarea class="form-control" id="message-text" name="description" placeholder="Write something..."></textarea>
               </div>
 
               <div class="modal-footer">
