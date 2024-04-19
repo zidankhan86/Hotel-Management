@@ -2,7 +2,7 @@
 @section('content')
 
 @include('frontend.fixed.hero')
-@include('frontend.fixed.room')
-@include('frontend.fixed.about')
+@include('frontend.room.room')
+@include('frontend.about.about')
 
 @endsection

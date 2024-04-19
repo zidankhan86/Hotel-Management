@@ -114,16 +114,21 @@
         <label for="featuresCheckbox" style="display: inline-block; margin-right: 10px;">Features</label><br>
         <div style="display: inline-block;">
           @foreach ($features as $feature)
+          <input type="hidden" value="{{ $feature->name }}" name="names[{{ $loop->index }}]">
           <input type="checkbox" id="feature_{{ $feature->id }}" name="features_id[]" value="{{ $feature->id }}">
           <label for="feature_{{ $feature->id }}" style="margin-right: 20px;">{{ $feature->name }}</label>
+          
           @endforeach
         </div>
-    </div>
+       </div>
+       
+       
 
-    <div style="margin-bottom: 10px;">
+      <div style="margin-bottom: 10px;">
         <label for="facilitiesCheckbox" style="display: inline-block; margin-right: 10px;">Facilities</label><br>
         <div style="display: inline-block;">
             @foreach ($facilities as $facility)
+                <input type="hidden" value="{{ $facility->name }}" name="names[{{ $loop->index }}]">
                 <input type="checkbox" id="facility_{{ $facility->id }}" name="facilities_id[]" value="{{ $facility->id }}">
                 <label for="facility_{{ $facility->id }}" style="margin-right: 20px;">{{ $facility->name }}</label>
             @endforeach

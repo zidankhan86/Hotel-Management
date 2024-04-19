@@ -9,6 +9,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\FacilitiesController;
+use App\Http\Controllers\frontend\RoomController as FrontendRoomController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingController;
 
@@ -31,7 +32,7 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'loginProcess'])->name('login.submit');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-
+Route::get('/room-page', [FrontendRoomController::class, 'room_page'])->name('room.page');
 
 //Middleware for check valid user
 Route::group(['middleware' => 'customerAuth'], function () {

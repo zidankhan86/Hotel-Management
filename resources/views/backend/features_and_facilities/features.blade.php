@@ -51,9 +51,9 @@
           <div class="row">
             <div class="col-md-12 mb-3">
               <label for="recipient-name" class="col-form-label">Features Name</label>
-              <input type="text" class="form-control" id="recipient-name" name="name">
+              <input type="text" class="form-control" id="recipient-name" name="name" placeholder="Attach Bathroom">
             </div>
-
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Submit</button>

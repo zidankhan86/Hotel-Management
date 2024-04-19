@@ -28,24 +28,23 @@ class RoomController extends Controller
 
         $validator = Validator::make($request->all(), [
             
-            'category_name' => 'required',
-            'area' => 'required',
-            'price' => 'required',
-            'quantity' => 'required',
-            'adult' => 'required',
-            'children' => 'required',
-            'description' => 'required',
-            'image' => 'required',
-            'status' => 'required',
-            'features_id' => 'nullable',
-            'facilities_id' => 'nullable',
+            'category_name'     => 'required',
+            'area'              => 'required',
+            'price'             => 'required',
+            'quantity'          => 'required',
+            'adult'             => 'required',
+            'children'          => 'required',
+            'description'       => 'required',
+            'image'             => 'required',
+            'status'            => 'required',
+            'features_id'       => 'nullable',
+            'facilities_id'     => 'nullable',
             
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
 
         $imageName = null;
         if ($request->hasFile('image')) {
@@ -66,19 +65,26 @@ class RoomController extends Controller
         ]);
 
         if ($request->has('features_id')) {
-            foreach ($request->features_id as $featureId) {
+            $names = $request->input('names', []); 
+            foreach ($request->features_id as $key => $featureId) {
+                $name = isset($names[$key]) ? $names[$key] : null; 
                 RoomFeature::create([
                     'room_id' => $room->id,
                     'feature_id' => $featureId,
+                    'name' => $name 
                 ]);
             }
         }
+        
 
         if ($request->has('facilities_id')) {
-            foreach ($request->facilities_id as $facilitiesId) {
+            $names = $request->input('names', []); 
+            foreach ($request->facilities_id as $key=> $facilitiesId) {
+                $name = isset($names[$key]) ? $names[$key] : null; 
                 RoomFacilities::create([
                     'room_id' => $room->id,
                     'facilities_id' => $facilitiesId,
+                    'name' => $name 
                 ]);
             }
         }

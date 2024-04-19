@@ -15,4 +15,9 @@ class Room extends Model
     {
         return $this->belongsToMany(Features::class, 'room_features');
     }
+
+    public function facilities()
+    {
+        return $this->belongsToMany(facilities::class, 'room_facilities');
+    }
 }
