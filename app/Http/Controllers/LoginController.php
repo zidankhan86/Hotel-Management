@@ -52,7 +52,7 @@ return redirect()->back()->withInput()->withErrors(['login' => 'Invalid credenti
 public function logout(){
 
     Auth::logout();
-    return redirect()->route('home');
+    return redirect()->route('dashboard');
 
 }
 

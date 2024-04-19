@@ -7,91 +7,49 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-                <div class="sb-sidenav-menu-heading">Home</div>
-
-                <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+               
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Categories
+                    Rooms
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{route('category.list')}}">Category</a>
+                        <a class="nav-link" href="{{route('room.index')}}">Rooms</a>
+                        <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                     </nav>
-                    
                 </div>
-
-
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"  aria-controls="collapsePages">
-                    <div class="sb-nav-link-icon"><i class="fas fa-shopping-bag"></i></div>
-                    Product
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                    Features & Facilities
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-
-
-
-                          <a class="nav-link" href="{{route('product.list')}}">Product</a>
-
-                        
-
+                        <a class="nav-link collapsed" href="{{route('features.index')}}"  aria-expanded="false" aria-controls="pagesCollapseAuth">
+                            Features
+                           
+                        </a>
+                        <a class="nav-link collapsed" href="{{route('facilities.index')}}"  aria-expanded="false" aria-controls="pagesCollapseAuth">
+                            Facilities
+                           
+                        </a>
+                     
                     </nav>
-
                 </div>
-
-                <a class="nav-link" href="{{route('order.list')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-clipboard"></i></div>
-                    Orders
+                <a class="nav-link" href="charts.html">
+                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                    Charts
                 </a>
-                
-
-                <a class="nav-link" href="{{route('hero.list')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-flag"></i>
-                    </div>
-                    Hero Banner
-                </a>
-
-
-                <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapseBanners" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-flag"></i>
-                    </div>
-                    Banners
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="collapseBanners" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{route('banner.list.one')}}">Banner-1(Top)</a>
-                    </nav>
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{route('banner.list.two')}}">Banner-2(Middle)</a>
-                    </nav>
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{route('banner.list')}}">Banner-3(bottom)</a>
-
-                    </nav>
-
-                </div>
-
-                <a class="nav-link" href="{{route('blog.list')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-pen"></i></div>
-                    Blogs
-                </a>
-
-                <a class="nav-link" href="{{route('contact.list')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-comment"></i></div>
-                    User Feedback
-                </a>
-
-                <a class="nav-link" href="{{route('report')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-print"></i></div>
-                    Print Report
+                <a class="nav-link" href="tables.html">
+                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                    Setting
                 </a>
             </div>
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            {{auth()->user()->name}}
+            Start Bootstrap
         </div>
     </nav>
 </div>

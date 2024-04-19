@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\BannerOne;
 use App\Models\BannerTwo;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -104,107 +103,5 @@ Alert::toast()->success('Banner Updated');
 
 }
 
-public function bannerFormTwo(){
-    return view('backend.pages.banner.bannarForm2');
-}
-
-public function bannerListTwo(){
-    $banners = BannerTwo::all();
-    return view('backend.pages.banner.bannerlist2',compact('banners'));
-}
-
-public function bannerStoreTwo(Request $request){
-
-    $validator = Validator::make($request->all(), [
-        'tittle' => 'required',
-        'image' => 'required|max:500',
-    ]);
-
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
-    }
-
-        $existingBannersCount = BannerTwo::count();
-    if ($existingBannersCount >= 2) {
-        return back()->with('error', 'Maximum number of banners reached');
-    }
-
-    $imageName = time() . '.' . $request->file('image')->extension();
-         $request->file('image')->move(public_path('uploads'), $imageName);
-
-   // dd($imageName);
-    //dd($request->all());
-
-    BannerTwo::create([
-
-    "tittle"=>$request->tittle,
-    "image"=>$imageName
-
-    ]);
-
-    return back()->with('success','Banner Uploaded Successfully!');
-
-}
-public function bannerTwoDelete($id){
-
-    $banner = BannerTwo::find($id);
-
-    if ($banner) {
-        $banner->delete();
-        return redirect()->back()->with('success', 'Banner deleted successfully!');
-    }
-
-        return redirect()->back()->with('error', 'Banner not found.');
-
-    }
-    public function bannerFormOne(){
-
-        return view('backend.pages.banner.bannerForm1');
-
-    }
-    public function bannerListOne(){
-
-        $bannerOne = BannerOne::all();
-
-        return view('backend.pages.banner.bannerList1',compact('bannerOne'));
-
-    }
-    public function bannerStoreOne( Request $request){
-        $validator = Validator::make($request->all(), [
-            'tittle' => 'nullable',
-            'image' => 'required|max:400',
-        ]);
-
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
-    }
-
-    $existingBannersCount = BannerOne::count();
-    if ($existingBannersCount >= 2) {
-        return back()->with('error', 'Maximum number of banners reached');
-    }
-
-    $imageName = time() . '.' . $request->file('image')->extension();
-         $request->file('image')->move(public_path('uploads'), $imageName);
-
-   // dd($imageName);
-    //dd($request->all());
-
-        BannerOne::create([
-
-        "tittle"=>$request->tittle,
-        "image"=>$imageName
-
-        ]);
-
-        return back()->with('success','Banner Uploaded Successfully!');
-
-
-        }
-        public function bannerOneDelete($id){
-            $delete = BannerOne::find($id);
-            $delete->delete();
-            return back();
-        }
 
 }

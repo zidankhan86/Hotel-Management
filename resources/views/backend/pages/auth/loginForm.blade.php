@@ -50,7 +50,7 @@
                                     </div>
 
                                     <div class="card-footer  py-3">
-                                        <div class="small text-right" >Click <a href="{{route('home')}}"> here</a> to go  <i class="fa fa-home btn btn-success"></i> </div>
+                                        <div class="small text-right" >Click <a href="#"> here</a> to go  <i class="fa fa-home btn btn-success"></i> </div>
                                     </div>
 
                                 </div>
