@@ -57,8 +57,12 @@ class FacilitiesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(facilities $facilities)
+    public function facilities_delete( $id)
     {
-        //
+        $delete = facilities::find($id);
+
+        $delete->delete();
+
+        return back()->with('success','Facilities deleted successfully!!');
     }
 }

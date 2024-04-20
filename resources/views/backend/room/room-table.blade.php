@@ -43,9 +43,9 @@
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->price}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->quantity}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->status == 1 ? 'Active':'Inactive'}}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;"><a href="#" data-bs-toggle="modal" data-bs-target="#editModal{{$room->id}}"><i class="fas fa-edit"></i></a>
+          <td style="border: 1px solid #ddd; padding: 8px;"><a href="#" data-bs-toggle="modal" data-bs-target="#editModal{{$room->id}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
           
-            <a href=""><i class="fas fa-trash"></i></a>
+            <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fas fa-trash"></i></a>
           </td>
           
         </tr>
@@ -251,22 +251,51 @@
 @endforeach
 
 
-<script>
-var exampleModal = document.getElementById('exampleModal')
-exampleModal.addEventListener('show.bs.modal', function (event) {
-  var button = event.relatedTarget
-  var recipient = button.getAttribute('data-bs-whatever')
-  var modalTitle = exampleModal.querySelector('.modal-title')
-  var modalBodyInput = exampleModal.querySelector('.modal-body input')
-  modalTitle.textContent = 'Add Room' 
-})
-</script>
+    <script>
+    var exampleModal = document.getElementById('exampleModal')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+      var button = event.relatedTarget
+      var recipient = button.getAttribute('data-bs-whatever')
+      var modalTitle = exampleModal.querySelector('.modal-title')
+      var modalBodyInput = exampleModal.querySelector('.modal-body input')
+      modalTitle.textContent = 'Add Room' 
+    })
+    </script>
 
-<script>
-  $('.dropify').dropify({ messages: {
-  'default': 'Hotel Image', 'replace': 'Drag and drop or click to replace', 'remove': 'Remove',
-  'error':	'Ooops, something wrong happended.'
-  }
-  });
-</script>
+    <script>
+      $('.dropify').dropify({ messages: {
+      'default': 'Hotel Image', 'replace': 'Drag and drop or click to replace', 'remove': 'Remove',
+      'error':	'Ooops, something wrong happended.'
+      }
+      });
+    </script>
+
+
+    <script>
+      const myModal = document.getElementById('myModal')
+    const myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', () => {
+      myInput.focus()
+    })
+    </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="myModal">Warning</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p class="text-danger">Sorry , You can not delete room!!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+           
+          </div>
+        </div>
+      </div>
+    </div>
 @endsection
