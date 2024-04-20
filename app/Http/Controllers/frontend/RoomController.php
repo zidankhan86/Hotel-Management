@@ -14,4 +14,11 @@ class RoomController extends Controller
     Features::with('features')->get();
     return view('frontend.fixed.room-page',compact('rooms'));
    }
+
+
+   public function room_details_page($id){
+
+      $room_details = Room::find($id);
+      return view('frontend.room.room-details',compact('room_details'));
+   }
 }
