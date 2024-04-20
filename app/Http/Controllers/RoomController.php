@@ -97,8 +97,46 @@ class RoomController extends Controller
      */
     public function update(Request $request, Room $room)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'category_name' => 'required',
+            'area' => 'required',
+            'price' => 'required',
+            'quantity' => 'required',
+            'adult' => 'required',
+            'children' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+    
+        // Update room details
+        $room->update([
+            'category_name' => $request->category_name,
+            'area' => $request->area,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'adult' => $request->adult,
+            'children' => $request->children,
+            'description' => $request->description,
+            'status' => $request->status,
+        ]);
+    
+        // Handle image update
+        if ($request->hasFile('image')) {
+            $imageName = date('Ymdhis').'.'.$request->image->extension();
+            $request->image->storeAs('uploads', $imageName, 'public');
+            $room->update(['image' => $imageName]);
+        }
+    
+        // Update room features and facilities
+        // (You may need to modify this part based on your actual implementation)
+    
+        return back()->with('success', 'Room updated successfully!');
     }
+    
 
     /**
      * Remove the specified resource from storage.
