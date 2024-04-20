@@ -46,10 +46,26 @@ class FeaturesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Features $features)
-    {
-        //
+  /**
+ * Update the specified resource in storage.
+ */
+public function update(Request $request, Features $features)
+{
+    $validator = Validator::make($request->all(), [
+        'name' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
     }
+
+    $features->update([
+        'name' => $request->name,
+    ]);
+
+    return back()->with('success','Features updated successfully!!');
+}
+
 
     /**
      * Remove the specified resource from storage.
