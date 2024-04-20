@@ -43,7 +43,7 @@
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->price}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->quantity}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->status == 1 ? 'Active':'Inactive'}}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;"><a href=""><i class="fas fa-edit"></i></a>
+          <td style="border: 1px solid #ddd; padding: 8px;"><a href="#" data-bs-toggle="modal" data-bs-target="#editModal{{$room->id}}"><i class="fas fa-edit"></i></a>
           
             <a href=""><i class="fas fa-trash"></i></a>
           </td>
@@ -154,6 +154,102 @@
     </div>
   </div>
 </div>
+
+<!-- Edit Modal -->
+@foreach ($rooms as $room)
+    <div class="modal fade" id="editModal{{$room->id}}" tabindex="-1" aria-labelledby="editModal{{$room->id}}Label" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 60%; width: 60%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModal{{$room->id}}Label">Edit Room</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('room.update', $room->id) }}" method="POST" enctype="multipart/form-data">
+                        @method('PUT')
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_category_name" class="col-form-label">Category Name</label>
+                                <input type="text" class="form-control" id="edit_category_name" name="category_name" value="{{$room->category_name}}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_area" class="col-form-label">Area</label>
+                                <input type="text" class="form-control" id="edit_area" name="area" value="{{$room->area}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_price" class="col-form-label">Price</label>
+                                <input type="number" class="form-control" id="edit_price" name="price" value="{{$room->price}}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_quantity" class="col-form-label">Quantity of Rooms</label>
+                                <input type="number" class="form-control" id="edit_quantity" name="quantity" value="{{$room->quantity}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_adult" class="col-form-label">Adult(Max.)</label>
+                                <input type="number" class="form-control" id="edit_adult" name="adult" value="{{$room->adult}}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_children" class="col-form-label">Children(Max.)</label>
+                                <input type="number" class="form-control" id="edit_children" name="children" value="{{$room->children}}">
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="edit_status" class="col-form-label">Status</label>
+                                <select name="status" id="edit_status" class="form-control">
+                                    <option value="1" {{$room->status == 1 ? 'selected' : ''}}>Active</option>
+                                    <option value="0" {{$room->status == 0 ? 'selected' : ''}}>Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Add other form fields as needed -->
+
+                        <div style="margin-bottom: 10px;">
+                            <label for="edit_featuresCheckbox" style="display: inline-block; margin-right: 10px;">Features</label><br>
+                            <div style="display: inline-block;">
+                                @foreach ($features as $feature)
+                                    <input type="hidden" value="{{ $feature->name }}" name="names[{{ $loop->index }}]">
+                                    <input type="checkbox" id="edit_feature_{{ $feature->id }}" name="features_id[]" value="{{ $feature->id }}">
+                                    <label for="edit_feature_{{ $feature->id }}" style="margin-right: 20px;">{{ $feature->name }}</label>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 10px;">
+                            <label for="edit_facilitiesCheckbox" style="display: inline-block; margin-right: 10px;">Facilities</label><br>
+                            <div style="display: inline-block;">
+                                @foreach ($facilities as $facility)
+                                    <input type="hidden" value="{{ $facility->name }}" name="names[{{ $loop->index }}]">
+                                    <input type="checkbox" id="edit_facility_{{ $facility->id }}" name="facilities_id[]" value="{{ $facility->id }}">
+                                    <label for="edit_facility_{{ $facility->id }}" style="margin-right: 20px;">{{ $facility->name }}</label>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="edit_description" class="col-form-label">Description</label>
+                            <textarea class="form-control" id="edit_description" name="description" placeholder="Write about room....">{{$room->description}}</textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="edit_image" class="col-form-label">Choose New Image</label>
+                            <input type="file" class="dropify" data-default-file="{{url('/storage/uploads/'.$room->image)}}" name="image">
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
+
 
 <script>
 var exampleModal = document.getElementById('exampleModal')
