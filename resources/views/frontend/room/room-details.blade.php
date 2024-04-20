@@ -9,7 +9,7 @@
                 <div class="breadcrumb-text">
                     <h2>Our Rooms</h2>
                     <div class="bt-option">
-                        <a href="./home.html">Home</a>
+                        <a href="{{url('/')}}">Home</a>
                         <span>Rooms Details</span>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     <img src="img/room/room-details.jpg" alt="">
                     <div class="rd-text">
                         <div class="rd-title">
-                            <h3>Premium King Room</h3>
+                            <h3>{{$room_details->category_name}}</h3>
                             <div class="rdt-right">
                                 <div class="rating">
                                  
@@ -36,39 +36,31 @@
                                 <a href="#">Booking Now</a>
                             </div>
                         </div>
-                        <h2>159$<span>/Pernight</span></h2>
+                        <h2>{{$room_details->price}} tk<span>/Pernight</span></h2>
                         <table>
                             <tbody>
                                 <tr>
                                     <td class="r-o">Size:</td>
-                                    <td>30 ft</td>
+                                    <td>{{$room_details->area}}</td>
                                 </tr>
                                 <tr>
                                     <td class="r-o">Capacity:</td>
-                                    <td>Max persion 5</td>
+                                    <td>{{$room_details->adult}} Adult</td>
                                 </tr>
+
                                 <tr>
-                                    <td class="r-o">Bed:</td>
-                                    <td>King Beds</td>
+                                    <td class="r-o">Capacity:</td>
+                                    <td>{{$room_details->children}} Children</td>
                                 </tr>
+
                                 <tr>
                                     <td class="r-o">Services:</td>
                                     <td>Wifi, Television, Bathroom,...</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <p class="f-para">Motorhome or Trailer that is the question for you. Here are some of the
-                            advantages and disadvantages of both, so you will be confident when purchasing an RV.
-                            When comparing Rvs, a motorhome or a travel trailer, should you buy a motorhome or fifth
-                            wheeler? The advantages and disadvantages of both are studied so that you can make your
-                            choice wisely when purchasing an RV. Possessing a motorhome or fifth wheel is an
-                            achievement of a lifetime. It can be similar to sojourning with your residence as you
-                            search the various sites of our great land, America.</p>
-                        <p>The two commonly known recreational vehicle classes are the motorized and towable.
-                            Towable rvs are the travel trailers and the fifth wheel. The rv travel trailer or fifth
-                            wheel has the attraction of getting towed by a pickup or a car, thus giving the
-                            adaptability of possessing transportation for you when you are parked at your campsite.
-                        </p>
+                        <p class="f-para">{!!$room_details->description!!}</p>
+                        
                     </div>
                 </div>
               

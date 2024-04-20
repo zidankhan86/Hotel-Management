@@ -31,26 +31,27 @@
         </tr>
       </thead>
       <tbody>
-@foreach ($rooms as $room)
+        
+    @foreach ($rooms as $room)
 
-        <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->id}}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->category_name}}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">
-            <img height="50px" width="50px" src="{{url('/storage/uploads/'.$room->image)}}" alt="Room">
-            </td>
-          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->area}}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->price}}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->quantity}}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->status == 1 ? 'Active':'Inactive'}}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;"><a href=""><i class="fas fa-edit"></i></a>
-          
-            <a href=""><i class="fas fa-trash"></i></a>
-          </td>
-          
-        </tr>
-  
-@endforeach
+            <tr>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{$room->id}}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{$room->category_name}}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">
+                <img height="50px" width="50px" src="{{url('/storage/uploads/'.$room->image)}}" alt="Room">
+                </td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{$room->area}}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{$room->price}}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{$room->quantity}}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{$room->status == 1 ? 'Active':'Inactive'}}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;"><a href=""><i class="fas fa-edit"></i></a>
+              
+                <a href=""><i class="fas fa-trash"></i></a>
+              </td>
+              
+            </tr>
+      
+    @endforeach
 
       </tbody>
     </table>
