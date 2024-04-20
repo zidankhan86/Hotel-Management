@@ -28,7 +28,7 @@
                 <td style="border: 1px solid #ddd; padding: 8px;">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#editModal{{$feature->id}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
 
-                    <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                    <a href="{{route('features.delete',$feature->id)}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
             @endforeach
@@ -54,7 +54,7 @@
                         <div class="col-md-12 mb-3">
                             <label for="recipient-name" class="col-form-label">Features Name</label>
                             <input type="text" class="form-control" id="recipient-name" name="name"
-                                placeholder="Attach Bathroom">
+                                placeholder="4k tv">
                         </div>
 
                         <div class="modal-footer">
@@ -115,4 +115,5 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
         })
     @endforeach
 </script>
+
 @endsection

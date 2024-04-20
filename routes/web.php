@@ -56,4 +56,5 @@ Route::group(['middleware' => 'auth', 'admin', 'prefix' => 'admin'], function ()
     Route::get('/contact-page', [ContactController::class, 'contact_us'])->name('contact.page');
     Route::post('/contact-page-store', [ContactController::class, 'contact_store'])->name('contact.store');
 
+
 });

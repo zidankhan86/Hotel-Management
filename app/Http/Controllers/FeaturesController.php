@@ -68,8 +68,12 @@ class FeaturesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Features $features)
+    public function features_delete($id)
     {
-        //
+        $delete = Features::find($id);
+
+        $delete->delete();
+
+        return back()->with('success','Features deleted successfully!!');
     }
 }
