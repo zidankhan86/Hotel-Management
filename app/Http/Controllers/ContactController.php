@@ -9,10 +9,10 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ContactController extends Controller
 {
-    public function contact(){
-        return view('frontend.pages.contactus.contactus');
+    public function contact_us(){
+        return view('frontend.contactUs.contact-us');
     }
-    public function contactForm(Request $request){
+    public function contact_store(Request $request){
 
        // dd($request->all());
 
