@@ -18,11 +18,23 @@
                             <ul>
                                 <li class="active"><a href="{{url('/')}}">Home</a></li>
                                 <li><a href="{{route('room.page')}}">Rooms</a></li>
-                                <li><a href="./about-us.html">About Us</a></li>
+                                <li><a href="{{route('about.page')}}">About Us</a></li>
                                 <li><a href="{{route('contact.page')}}">Contact</a></li>
-                                <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
-                                <li><a href="#" data-toggle="modal" data-target="#registrationModal">Registration</a></li>
-                                <li><a href="./contact.html">SignUp</a></li>
+                                <li>
+                                    @auth
+                                        <a href="./contact.html"><b>Profile</b></a>
+                                    @else
+                                        <a href="#" data-toggle="modal" data-target="#loginModal"><b>Login</b></a>
+                                    @endauth
+                                </li>
+                                <li>
+                                    @auth
+                                        <a href="./contact.html" style="color: red"><b>Logout</b></a>
+                                    @else
+                                        <a href="#" data-toggle="modal" data-target="#registrationModal"><b>Registration</b></a>
+                                    @endauth
+                                </li>
+                                
                                 
                             </ul>
                             

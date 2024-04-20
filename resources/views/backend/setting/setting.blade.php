@@ -69,7 +69,7 @@
                             <img height="50px" width="50px" src="{{url('/uploads/'.$banner->image)}}" alt="banner">
                         </td>
                           <td style="border: 1px solid #ddd; padding: 8px;">
-                          <a href="" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                         
                           <a href="{{route('banner.delete',$banner->id)}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                           
                           </td>
@@ -147,7 +147,13 @@
                   <div style="width: 200px;  ">
                     <h6>About Table</h6>
                   </div>
+                  @php
+                  $about = App\Models\About::simplePaginate(1);
+                  @endphp
 
+                  @if($about->isEmpty())
+                      <p>No data found.</p>
+                  @else
                   
                     <table style="width: 100%; border-collapse: collapse;">
                         
@@ -156,27 +162,29 @@
                             <th style="padding: 8px; background-color: #0c0707; color: white;">#</th>
                             <th style="padding: 8px; background-color: #0c0b0b; color: white;">Name</th>
                             <th style="padding: 8px; background-color: #0f0d0d; color: white;">Description</th>
+                            <th style="padding: 8px; background-color: #0f0d0d; color: white;">Image</th>
                             <th style="padding: 8px; background-color: #0e0d0d; color: white;">Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                     {{-- @foreach ($facilities as $facilitiy) --}}
+                     @foreach ($about as $about) 
                 
                         <tr>
-                          <td style="border: 1px solid #ddd; padding: 8px;">a</td>
-                          <td style="border: 1px solid #ddd; padding: 8px;">a</td>
-                          <td style="border: 1px solid #ddd; padding: 8px;">a</td>
+                          <td style="border: 1px solid #ddd; padding: 8px;">{{$about->id}}</td>
+                          <td style="border: 1px solid #ddd; padding: 8px;">{{$about->tittle}}</td>
+                          <td style="border: 1px solid #ddd; padding: 8px;">{{$about->description}}</td>
+                          <td style="border: 1px solid #ddd; padding: 8px;"><img height="50px" width="50px" src="{{url('/uploads/'.$about->image)}}" alt="about"></td>
                           <td style="border: 1px solid #ddd; padding: 8px;">
-                          <a href="" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                          <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            
+                          <a href="{{route('about.delete',$about->id)}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                           
                           </td>
                         </tr>
                   
-                     {{-- @endforeach --}}
+                      @endforeach 
                       </tbody>
                     </table>
-                  
+                  @endif
                 </body>
                   
                 {{--Modal --}}
@@ -185,29 +193,33 @@
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title">Modal title</h5>
+                          <h5 class="modal-title">About Form</h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                          <form>
+                          <form action="{{route('about.store')}}" method="post" enctype="multipart/form-data">
+                            @csrf
                             <div class="mb-3">
                               <label for="title" class="form-label">Title</label>
-                              <input type="text" class="form-control" id="title" name="title">
+                              <input type="text" class="form-control" id="title" name="tittle" placeholder="Title">
                             </div>
-                            <div class="mb-3">
-                              <label for="description" class="form-label">Description</label>
-                              <input type="text" class="form-control" id="description" name="description">
-                            </div>
+                        
                             <div class="mb-3">
                               <label for="content" class="form-label">Content</label>
-                              <textarea class="form-control" id="content" name="content"></textarea>
+                              <textarea class="form-control" id="content" name="description" placeholder="write something..."></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                              <label for="message-text" class="col-form-label">Choose an image*</label>
+                             <input type="file" name="image" id="" class="form-control dropifys">
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
                           </form>
                         </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                        
                       </div>
                     </div>
                   </div>
@@ -233,16 +245,17 @@
 
 
 <script>
-    // In your Javascript (external .js resource or <script> tag)
-    $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-    });
-</script>
-<script>
     $('.dropify').dropify({ messages: {
     'default': 'Hero Image', 'replace': 'Drag and drop or click to replace', 'remove': 'Remove',
     'error':	'Ooops, something wrong happended.'
     }
     });
+</script>
+<script>
+  $('.dropifys').dropify({ messages: {
+  'default': 'About Image', 'replace': 'Drag and drop or click to replace', 'remove': 'Remove',
+  'error':	'Ooops, something wrong happended.'
+  }
+  });
 </script>
 @endsection

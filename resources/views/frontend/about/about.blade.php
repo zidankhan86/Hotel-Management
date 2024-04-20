@@ -6,25 +6,33 @@
                 <div class="about-text">
                     <div class="section-title">
                         <span>About Us</span>
-                        <h2>Intercontinental LA <br />Westlake Hotel</h2>
+                        @if ($about)
+                            <h2>{{$about->tittle}}</h2>
+                        @else
+                            <p>No data available</p>
+                        @endif
+
                     </div>
-                    <p class="f-para">Sona.com is a leading online accommodation site. We’re passionate about
-                        travel. Every day, we inspire and reach millions of travelers across 90 local websites in 41
-                        languages.</p>
-                    <p class="s-para">So when it comes to booking the perfect hotel, vacation rental, resort,
-                        apartment, guest house, or tree house, we’ve got you covered.</p>
-                    <a href="#" class="primary-btn about-btn">Read More</a>
+                    
+                    @if ($about)
+                        <p class="f-para">{{$about->description}}</p>
+                    @else
+                        <p>No Description available</p>
+                    @endif
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="about-pic">
                     <div class="row">
-                        <div class="col-sm-6">
-                            <img src="frontend/img/about/about-1.jpg" alt="">
+                        @if ($about)
+                        <div class="col-sm-12">
+                            <img src="{{('/uploads/'.$about->image)}}" alt="About">
                         </div>
-                        <div class="col-sm-6">
-                            <img src="frontend/img/about/about-2.jpg" alt="">
-                        </div>
+                    @else
+                        <p>No Image available</p>
+                    @endif
+                        
+                        
                     </div>
                 </div>
             </div>
