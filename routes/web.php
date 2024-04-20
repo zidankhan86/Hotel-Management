@@ -21,7 +21,6 @@ use App\Http\Controllers\SettingController;
 Route::get('/profile',[ProfileController::class,'profile']);
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
-Route::get('/login-frontend', [LoginController::class, 'showLoginFormFrontend'])->name('login.frontend');
 //Registration
 Route::get('/registration', [LoginController::class, 'registration'])->name('registration');
 Route::post('/registration', [LoginController::class, 'registrationStore'])->name('registration.submit');
