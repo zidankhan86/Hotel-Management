@@ -74,31 +74,31 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="recipient-name" class="col-form-label">Category Name</label>
-              <input type="text" class="form-control" id="recipient-name" name="category_name">
+              <input type="text" class="form-control" id="recipient-name" name="category_name" placeholder="Deluxe">
             </div>
             <div class="col-md-6 mb-3">
               <label for="recipient-name" class="col-form-label">Area</label>
-              <input type="text" class="form-control" id="recipient-name" name="area">
+              <input type="text" class="form-control" id="recipient-name" name="area" placeholder="500 sqft">
             </div>
           </div>
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="recipient-name" class="col-form-label">Price</label>
-              <input type="number" class="form-control" id="recipient-name" name="price">
+              <input type="number" class="form-control" id="recipient-name" name="price" placeholder="5000">
             </div>
             <div class="col-md-6 mb-3">
               <label for="recipient-name" class="col-form-label">Quantity of Rooms</label>
-              <input type="number" class="form-control" id="recipient-name" name="quantity">
+              <input type="number" class="form-control" id="recipient-name" name="quantity" placeholder="10">
             </div>
           </div>
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="recipient-name" class="col-form-label">Adult(Max.)</label>
-              <input type="text" class="form-control" name="adult" id="recipient-name">
+              <input type="number" class="form-control" name="adult" id="recipient-name" placeholder="4">
             </div>
             <div class="col-md-6 mb-3">
               <label for="recipient-name" class="col-form-label">Children(Max.)</label>
-              <input type="text" class="form-control" name="children" id="recipient-name">
+              <input type="number" class="form-control" name="children" id="recipient-name" placeholder="1">
             </div>
             <div class="col-md-12 mb-3">
               <label for="recipient-name" class="col-form-label">Status</label>
@@ -137,7 +137,7 @@
 
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Description</label>
-            <textarea class="form-control" id="message-text" name="description"></textarea>
+            <textarea class="form-control" id="message-text" name="description" placeholder="Write about room...."></textarea>
           </div>
 
           <div>
