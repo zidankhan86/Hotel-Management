@@ -9,12 +9,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class BannerController extends Controller
 {
-   
-    public function bannerStore(Request $request){
+    public function bannerStore(Request $request)
+    {
         $validator = Validator::make($request->all(), [
-            'description'   => 'required',
-            'tittle'        => 'nullable',
-            'image'         => 'required|max:500',
+            'description' => 'required',
+            'tittle' => 'nullable',
+            'image' => 'required|max:500',
         ]);
 
         if ($validator->fails()) {
@@ -22,75 +22,76 @@ class BannerController extends Controller
         }
 
         $existingBannersCount = Banner::count();
-    if ($existingBannersCount >= 2) {
-        return back()->with('error', 'Maximum number of banners reached');
-    }
+        if ($existingBannersCount >= 2) {
+            return back()->with('error', 'Maximum number of banners reached');
+        }
 
-    $imageName = time() . '.' . $request->file('image')->extension();
-         $request->file('image')->move(public_path('uploads'), $imageName);
+        $imageName = time().'.'.$request->file('image')->extension();
+        $request->file('image')->move(public_path('uploads'), $imageName);
 
-       // dd($imageName);
+        // dd($imageName);
         //dd($request->all());
 
         Banner::create([
-        "description"   =>$request->description,
-        "tittle"        =>$request->tittle,
-        "image"         =>$imageName
+            'description' => $request->description,
+            'tittle' => $request->tittle,
+            'image' => $imageName,
 
         ]);
 
-        return back()->with('success','Hero banner Uploaded Successfully!');
+        return back()->with('success', 'Hero banner Uploaded Successfully!');
 
     }
 
-    public function bannerdelete($id){
+    public function bannerdelete($id)
+    {
         $banner = Banner::find($id);
 
-    if ($banner) {
-        $banner->delete();
-        return redirect()->back()->with('success', 'Hero banner deleted successfully!');
+        if ($banner) {
+            $banner->delete();
+
+            return redirect()->back()->with('success', 'Hero banner deleted successfully!');
+        }
+
+        return redirect()->back()->with('error', 'Banner not found.');
+
     }
 
-    return redirect()->back()->with('error', 'Banner not found.');
+    public function banneredit($id)
+    {
 
+        $edit = Banner::find($id);
+
+        return view('backend.pages.banner.edit', compact('edit'));
     }
 
-
-
-public function banneredit($id){
-
-    $edit = Banner::find($id);
-    return view('backend.pages.banner.edit',compact('edit'));
-}
-
-
-    public function bannerupdate(Request $request,$id){
+    public function bannerupdate(Request $request, $id)
+    {
         $validator = Validator::make($request->all(), [
             'tittle' => 'nullable',
             'image' => 'required|max:500',
         ]);
 
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $imageName = time().'.'.$request->file('image')->extension();
+        $request->file('image')->move(public_path('uploads'), $imageName);
+
+        // dd($imageName);
+        //dd($request->all());
+
+        $update = Banner::find($id);
+        $update->update([
+            'description' => $request->description,
+            'tittle' => $request->tittle,
+            'image' => $imageName,
+        ]);
+
+        Alert::toast()->success('Banner Updated');
+
+        return redirect()->route('banner.list');
+
     }
-
-    $imageName = time() . '.' . $request->file('image')->extension();
-    $request->file('image')->move(public_path('uploads'), $imageName);
-
-   // dd($imageName);
-    //dd($request->all());
-
-    $update = Banner::find($id);
-    $update->update([
-        "description"   =>$request->description,
-        "tittle"        =>$request->tittle,
-        "image"         =>$imageName
-    ]);
-
-Alert::toast()->success('Banner Updated');
-    return redirect()->route('banner.list');
-
-}
-
-
 }

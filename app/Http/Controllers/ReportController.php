@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ReportController extends Controller
 {
@@ -13,37 +13,34 @@ class ReportController extends Controller
     {
         //dd('yes');
         $oders = Order::all();
-        
-        return view('backend.pages.report.report',compact('oders'));
+
+        return view('backend.pages.report.report', compact('oders'));
     }
 
     public function reportSearch(Request $request)
     {
 
-    //dd('yes');
+        //dd('yes');
         $validator = Validator::make($request->all(), [
-            'from_date'    => 'required|date',
-            'to_date'      => 'required|date|after:from_date',
+            'from_date' => 'required|date',
+            'to_date' => 'required|date|after:from_date',
         ]);
 
-        if($validator->fails())
-        {
+        if ($validator->fails()) {
 
-           Alert:: toast()->error('From date and to date required and to should greater then from date.');
+            Alert::toast()->error('From date and to date required and to should greater then from date.');
+
             return redirect()->back();
         }
 
+        $from = $request->from_date;
+        $to = $request->to_date;
 
+        //       $status=$request->status;
 
-       $from=$request->from_date;
-       $to=$request->to_date;
+        $orders = Order::whereBetween('created_at', [$from, $to])->get();
 
-
-//       $status=$request->status;
-
-
-        $orders=Order::whereBetween('created_at', [$from, $to])->get();
-        return view('backend.pages.report.report',compact('orders'));
+        return view('backend.pages.report.report', compact('orders'));
 
     }
 }

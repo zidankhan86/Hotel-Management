@@ -21,6 +21,5 @@ class AdminMiddleware
 
         return redirect()->route('home')->with('error', 'You do not have permission to access this page.');
 
-
     }
 }
