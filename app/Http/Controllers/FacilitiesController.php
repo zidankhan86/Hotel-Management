@@ -14,16 +14,16 @@ class FacilitiesController extends Controller
     public function index()
     {
         $facilities = facilities::all();
-        return view('backend.features_and_facilities.facilities',compact('facilities'));
+
+        return view('backend.features_and_facilities.facilities', compact('facilities'));
     }
 
-   
     public function store(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'description'  => 'required|max:500',
+            'description' => 'required|max:500',
         ]);
 
         if ($validator->fails()) {
@@ -31,19 +31,19 @@ class FacilitiesController extends Controller
         }
 
         facilities::create([
-            'name'          => $request->name,
-            'description'   => $request->description,
+            'name' => $request->name,
+            'description' => $request->description,
 
         ]);
 
-        return back()->with('success','Facilities created successfully!!');
+        return back()->with('success', 'Facilities created successfully!!');
     }
 
-    
-    public function edit( $id)
+    public function edit($id)
     {
-        $facility =  facilities::findOrFail($id);;
-       return view('backend.features_and_facilities.edit-facilities',compact('facility'));
+        $facility = facilities::findOrFail($id);
+
+        return view('backend.features_and_facilities.edit-facilities', compact('facility'));
     }
 
     /**

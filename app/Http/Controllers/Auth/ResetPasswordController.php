@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class ResetPasswordController extends Controller
@@ -28,7 +28,7 @@ class ResetPasswordController extends Controller
         $user = User::where('email', $request->email)->first();
 
         // Check if the user exists
-        if (!$user) {
+        if (! $user) {
             return redirect()->back()->withErrors(['email' => 'User with this email not found.']);
         }
 

@@ -13,7 +13,8 @@ class FacilitiesController extends Controller
     public function index()
     {
         $facilities = facilities::all();
-        return view('backend.features_and_facilities.facilities',compact('facilities'));
+
+        return view('backend.features_and_facilities.facilities', compact('facilities'));
     }
 
     /**
@@ -42,10 +43,11 @@ class FacilitiesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit($id)
     {
-        $facility =  facilities::findOrFail($id);;
-       return view('backend.features_and_facilities.edit-facilities',compact('facility'));
+        $facility = facilities::findOrFail($id);
+
+        return view('backend.features_and_facilities.edit-facilities', compact('facility'));
     }
 
     /**

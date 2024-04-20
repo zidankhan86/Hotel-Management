@@ -7,103 +7,105 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-
 class LoginController extends Controller
 {
-    public function showLoginForm(){
+    public function showLoginForm()
+    {
         return view('backend.pages.auth.loginForm');
     }
 
-
-
     public function loginProcess(Request $request)
-{
-   // dd($request->all());
+    {
+        // dd($request->all());
 
-  // Validate the input fields
-  $validator = Validator::make($request->all(), [
-    'email' => 'required|email',
-    'password' => 'required',
-]);
+        // Validate the input fields
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-if ($validator->fails()) {
-    return redirect()->back()->withErrors($validator)->withInput();
-}
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
-$credentials = $request->only(['email', 'password']);
-$remember = $request->has('remember'); // Check if the "Remember Me" checkbox is checked
+        $credentials = $request->only(['email', 'password']);
+        $remember = $request->has('remember'); // Check if the "Remember Me" checkbox is checked
 
-if (Auth::attempt($credentials, $remember)) {
-    $user = Auth::user();
+        if (Auth::attempt($credentials, $remember)) {
+            $user = Auth::user();
 
-    if ($user->role == 'admin') {
+            if ($user->role == 'admin') {
+                return redirect()->route('dashboard');
+            } elseif ($user->role == 'customer') {
+                notify()->success('Login successful!.');
+
+                return redirect()->route('home');
+            }
+        }
+
+        // Authentication failed
+        return redirect()->back()->withInput()->withErrors(['login' => 'Invalid credentials']);
+
+    }
+
+    public function logout()
+    {
+
+        Auth::logout();
+
         return redirect()->route('dashboard');
-    } elseif ($user->role == 'customer') {
-        notify()->success('Login successful!.');
-        return redirect()->route('home');
+
     }
-}
 
-// Authentication failed
-return redirect()->back()->withInput()->withErrors(['login' => 'Invalid credentials']);
-
-}
-
-public function logout(){
-
-    Auth::logout();
-    return redirect()->route('dashboard');
-
-}
-
-
-public function registration(){
-    return view('backend.pages.auth.registration');
-}
-
-public function registrationStore(Request $request){
-
-    $validator = Validator::make($request->all(), [
-        'email' => 'required|email|unique:users',
-        'phone' => [
-            'required',
-            'regex:/^(?:\+?88|0088)?01[13-9]\d{8}$/'
-        ],
-        'address' => 'required',
-        'name' => 'required',
-        'password' => 'required|min:5',
-    ], [
-        'phone.regex' => 'The phone number should be a valid number.'
-    ]);
-
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
+    public function registration()
+    {
+        return view('backend.pages.auth.registration');
     }
-   // dd($request->all());
 
-    User::create([
+    public function registrationStore(Request $request)
+    {
 
-        "email"=>$request->email,
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:users',
+            'phone' => [
+                'required',
+                'regex:/^(?:\+?88|0088)?01[13-9]\d{8}$/',
+            ],
+            'address' => 'required',
+            'name' => 'required',
+            'password' => 'required|min:5',
+        ], [
+            'phone.regex' => 'The phone number should be a valid number.',
+        ]);
 
-        "phone"=>$request->phone,
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        // dd($request->all());
 
-        "address"=>$request->address,
+        User::create([
 
-        "name"=>$request->name,
+            'email' => $request->email,
 
+            'phone' => $request->phone,
 
-        "password"=>bcrypt($request->password),
+            'address' => $request->address,
 
-        "role"=>'customer',
+            'name' => $request->name,
 
-    ]);
-    notify()->success('Registration successful!.');
-    return redirect('/login-frontend')->withSuccess('Registration Success');
+            'password' => bcrypt($request->password),
 
-}
+            'role' => 'customer',
 
-public function showLoginFormFrontend(){
-    return view('backend.pages.auth.loginFrontend');
-}
+        ]);
+        notify()->success('Registration successful!.');
 
+        return redirect('/login-frontend')->withSuccess('Registration Success');
+
+    }
+
+    public function showLoginFormFrontend()
+    {
+        return view('backend.pages.auth.loginFrontend');
+    }
 }

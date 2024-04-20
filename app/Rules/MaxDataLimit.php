@@ -2,10 +2,8 @@
 
 namespace App\Rules;
 
-use Closure;
 use App\Models\Blog;
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Contracts\Validation\ValidationRule;
 
 class MaxDataLimit implements Rule
 {

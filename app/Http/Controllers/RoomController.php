@@ -2,44 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Room;
-use App\Models\Features;
 use App\Models\facilities;
+use App\Models\Features;
+use App\Models\Room;
+use App\Models\RoomFacilities;
 use App\Models\RoomFeature;
 use Illuminate\Http\Request;
-use App\Models\RoomFacilities;
 use Illuminate\Support\Facades\Validator;
 
 class RoomController extends Controller
 {
-   
     public function index()
     {
         $features = Features::all();
         $facilities = facilities::all();
         $rooms = Room::simplePaginate(8);
 
-        return view('backend.room.room-table', compact('features', 'facilities','rooms'));
+        return view('backend.room.room-table', compact('features', 'facilities', 'rooms'));
     }
 
-    
     public function store(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
-            
-            'category_name'     => 'required',
-            'area'              => 'required',
-            'price'             => 'required',
-            'quantity'          => 'required',
-            'adult'             => 'required',
-            'children'          => 'required',
-            'description'       => 'required',
-            'image'             => 'required',
-            'status'            => 'required',
-            'features_id'       => 'nullable',
-            'facilities_id'     => 'nullable',
-            
+
+            'category_name' => 'required',
+            'area' => 'required',
+            'price' => 'required',
+            'quantity' => 'required',
+            'adult' => 'required',
+            'children' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            'status' => 'required',
+            'features_id' => 'nullable',
+            'facilities_id' => 'nullable',
+
         ]);
 
         if ($validator->fails()) {
@@ -54,14 +52,14 @@ class RoomController extends Controller
 
         $room = Room::create([
             'category_name' => $request->category_name,
-            'area'          => $request->area,
-            'price'         => $request->price,
-            'quantity'      => $request->quantity,
-            'adult'         => $request->adult,
-            'children'      => $request->children,
-            'description'   => $request->description,
-            'image'         => $imageName,
-            'status'        => $request->status,
+            'area' => $request->area,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'adult' => $request->adult,
+            'children' => $request->children,
+            'description' => $request->description,
+            'image' => $imageName,
+            'status' => $request->status,
         ]);
 
         if ($request->has('features_id')) {
@@ -82,10 +80,8 @@ class RoomController extends Controller
             }
         }
 
-        return back()->with('success','Room Created successfully!!');
+        return back()->with('success', 'Room Created successfully!!');
     }
-
-    
 
     public function edit(Room $room)
     {
@@ -107,11 +103,11 @@ class RoomController extends Controller
             'description' => 'required',
             'status' => 'required',
         ]);
-    
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-    
+
         // Update room details
         $room->update([
             'category_name' => $request->category_name,
@@ -123,20 +119,19 @@ class RoomController extends Controller
             'description' => $request->description,
             'status' => $request->status,
         ]);
-    
+
         // Handle image update
         if ($request->hasFile('image')) {
             $imageName = date('Ymdhis').'.'.$request->image->extension();
             $request->image->storeAs('uploads', $imageName, 'public');
             $room->update(['image' => $imageName]);
         }
-    
+
         // Update room features and facilities
         // (You may need to modify this part based on your actual implementation)
-    
+
         return back()->with('success', 'Room updated successfully!');
     }
-    
 
     /**
      * Remove the specified resource from storage.

@@ -12,8 +12,9 @@ class FeaturesController extends Controller
      */
     public function index()
     {
-        $features= Features::all();
-        return view('backend.features_and_facilities.features',compact('features'));
+        $features = Features::all();
+
+        return view('backend.features_and_facilities.features', compact('features'));
     }
 
     /**

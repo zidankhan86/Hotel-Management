@@ -13,17 +13,17 @@ class FeaturesController extends Controller
      */
     public function index()
     {
-        $features= Features::all();
-        return view('backend.features_and_facilities.features',compact('features'));
+        $features = Features::all();
+
+        return view('backend.features_and_facilities.features', compact('features'));
     }
 
-    
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            
+
             'name' => 'required',
-            
+
         ]);
 
         if ($validator->fails()) {
@@ -34,10 +34,9 @@ class FeaturesController extends Controller
             'name' => $request->name,
         ]);
 
-        return back()->with('success','Features created successfully!!');
+        return back()->with('success', 'Features created successfully!!');
     }
 
-    
     public function edit(Features $features)
     {
         //
@@ -46,26 +45,25 @@ class FeaturesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-  /**
- * Update the specified resource in storage.
- */
-public function update(Request $request, Features $features)
-{
-    $validator = Validator::make($request->all(), [
-        'name' => 'required',
-    ]);
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Features $features)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ]);
 
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $features->update([
+            'name' => $request->name,
+        ]);
+
+        return back()->with('success', 'Features updated successfully!!');
     }
-
-    $features->update([
-        'name' => $request->name,
-    ]);
-
-    return back()->with('success','Features updated successfully!!');
-}
-
 
     /**
      * Remove the specified resource from storage.

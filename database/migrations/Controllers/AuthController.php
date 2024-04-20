@@ -7,15 +7,16 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-   public function login(){
-    return view('backend.login.login-page');
-   }
+    public function login()
+    {
+        return view('backend.login.login-page');
+    }
 
-   public function store(Request $request)
+    public function store(Request $request)
     {
         //dd($request->all());
         $request->validate([
-            'email' => 'required|email',    
+            'email' => 'required|email',
             'password' => 'required',
         ]);
         $credential = $request->only(['email', 'password']);

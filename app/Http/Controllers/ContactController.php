@@ -5,50 +5,57 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class ContactController extends Controller
 {
-    public function contact_us(){
+    public function contact_us()
+    {
         return view('frontend.contactUs.contact-us');
     }
-    public function contact_store(Request $request){
 
-       // dd($request->all());
+    public function contact_store(Request $request)
+    {
 
-       $validator = Validator::make($request->all(), [
-        'name' => 'required',
-        'email' => 'required|email',
-        'message' => 'required',
-    ]);
+        // dd($request->all());
 
-    // If validation fails, redirect back with error messages
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
-    }
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'message' => 'required',
+        ]);
+
+        // If validation fails, redirect back with error messages
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         Contact::create([
 
-            "name"=>$request->name,
-            "email"=>$request->email,
-            "message"=>$request->message,
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message,
 
         ]);
-        
+
         notify()->success('Thank you for your feedback.');
+
         return back();
 
     }
 
-    public function contactlist(){
+    public function contactlist()
+    {
 
         $feedback = Contact::all();
-        return view('backend.pages.feedback.feedback',compact('feedback'));
+
+        return view('backend.pages.feedback.feedback', compact('feedback'));
     }
 
-    public function contactview($id){
+    public function contactview($id)
+    {
 
         $messages = Contact::find($id);
-        return view('backend.pages.feedback.feedbackView',compact('messages'));
+
+        return view('backend.pages.feedback.feedbackView', compact('messages'));
     }
 }
