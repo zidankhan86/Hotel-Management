@@ -74,6 +74,6 @@ class FeaturesController extends Controller
 
         $delete->delete();
 
-        return back()->with('success','Features deleted successfully!!');
+        return back()->with('success', 'Features deleted successfully!!');
     }
 }
