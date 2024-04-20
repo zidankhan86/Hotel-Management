@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Validator;
 
 class HeroBannerController extends Controller
 {
-    public function heroPost(){
+    public function heroPost()
+    {
         return view('backend.pages.heroBanner.heroBannerForm');
     }
 
-    public function herostore(Request $request){
+    public function herostore(Request $request)
+    {
 
         //dd($request->all());
         $validator = Validator::make($request->all(), [
@@ -27,43 +29,46 @@ class HeroBannerController extends Controller
         }
 
         $existingBannersCount = HeroBanner::count();
-    if ($existingBannersCount >= 1) {
-        return back()->with('error', 'Maximum number of banners reached');
-    }
+        if ($existingBannersCount >= 1) {
+            return back()->with('error', 'Maximum number of banners reached');
+        }
 
-    $imageName = time() . '.' . $request->file('image')->extension();
-         $request->file('image')->move(public_path('uploads'), $imageName);
+        $imageName = time().'.'.$request->file('image')->extension();
+        $request->file('image')->move(public_path('uploads'), $imageName);
 
-       // dd($imageName);
+        // dd($imageName);
         //dd($request->all());
 
         HeroBanner::create([
 
-        "tittle"=>$request->tittle,
-        "small_tittle"=>$request->small_tittle,
-        "description"=>$request->description,
-        "image"=>$imageName
+            'tittle' => $request->tittle,
+            'small_tittle' => $request->small_tittle,
+            'description' => $request->description,
+            'image' => $imageName,
 
         ]);
 
-        return back()->with('success','Banner Uploaded Successfully!');
+        return back()->with('success', 'Banner Uploaded Successfully!');
     }
 
-    public function herolist(){
+    public function herolist()
+    {
 
         $banners = HeroBanner::all();
-        return view('backend.pages.heroBanner.heroList',compact('banners'));
+
+        return view('backend.pages.heroBanner.heroList', compact('banners'));
     }
 
-    public function herodelete($id){
+    public function herodelete($id)
+    {
         $delete = HeroBanner::find($id);
         $delete->delete();
 
         return redirect()->back();
     }
 
-
-    public function hero(){
+    public function hero()
+    {
         return view('frontend.pages.hero');
     }
 }

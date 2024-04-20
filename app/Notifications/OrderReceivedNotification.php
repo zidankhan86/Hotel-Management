@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -14,8 +13,7 @@ class OrderReceivedNotification extends Notification
     /**
      * Create a new notification instance.
      */
-
-     protected $order;
+    protected $order;
 
     public function __construct($order)
     {
@@ -26,10 +24,9 @@ class OrderReceivedNotification extends Notification
     {
         return [
             'order_id' => $this->order->id,
-            'message' => 'A new order has been received. Order ID: ' . $this->order->id,
+            'message' => 'A new order has been received. Order ID: '.$this->order->id,
         ];
     }
-
 
     /**
      * Get the notification's delivery channels.
@@ -47,9 +44,9 @@ class OrderReceivedNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('New Order has been received !')
-                    ->action('Click here to go home', url('/'))
-                    ->line('Thank you for using our application!');
+            ->line('New Order has been received !')
+            ->action('Click here to go home', url('/'))
+            ->line('Thank you for using our application!');
     }
 
     /**

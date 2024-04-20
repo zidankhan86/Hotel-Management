@@ -8,56 +8,60 @@ use Illuminate\Support\Facades\Validator;
 
 class CompanyLogoController extends Controller
 {
-   public function LogoForm()
-   {
-    return view('backend.pages.companyLogo.logoForm');
-   }
-   public function LogoStore(Request $request)
-   {
-    $validator = Validator::make($request->all(), [
-        'tittle' => 'nullable',
-        'image' => 'required|max:200',
-    ]);
+    public function LogoForm()
+    {
+        return view('backend.pages.companyLogo.logoForm');
+    }
 
-if ($validator->fails()) {
-    return redirect()->back()->withErrors($validator)->withInput();
-}
+    public function LogoStore(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'tittle' => 'nullable',
+            'image' => 'required|max:200',
+        ]);
 
-$existingBannersCount = CompanyLogo::count();
-if ($existingBannersCount >= 2) {
-    return back()->with('error', 'Maximum number of banners reached');
-}
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
-$imageName = null;
-if ($request->hasFile('image')) {
-    $file = $request->file('image');
-    $imageName = date('YmdiY').'.'.$file->extension();
-    $file->storeAs('uploads', $imageName, 'public');
-}
+        $existingBannersCount = CompanyLogo::count();
+        if ($existingBannersCount >= 2) {
+            return back()->with('error', 'Maximum number of banners reached');
+        }
 
-// dd($imageName);
-//dd($request->all());
+        $imageName = null;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $imageName = date('YmdiY').'.'.$file->extension();
+            $file->storeAs('uploads', $imageName, 'public');
+        }
 
-    CompanyLogo::create([
+        // dd($imageName);
+        //dd($request->all());
 
-    "tittle"=>$request->tittle,
-    "image"=>$imageName
+        CompanyLogo::create([
 
-    ]);
+            'tittle' => $request->tittle,
+            'image' => $imageName,
 
-    return back()->with('success','Logo Uploaded Successfully!');
+        ]);
 
+        return back()->with('success', 'Logo Uploaded Successfully!');
 
-   }
-   public function LogoDelete($id)
-   {
-    $delete = CompanyLogo::find($id);
-    $delete->delete();
-    return back();
-   }
-   public function LogoList()
-   {
-    $logo = CompanyLogo::all();
-    return view('backend.pages.companyLogo.logoList',compact('logo'));
-   }
+    }
+
+    public function LogoDelete($id)
+    {
+        $delete = CompanyLogo::find($id);
+        $delete->delete();
+
+        return back();
+    }
+
+    public function LogoList()
+    {
+        $logo = CompanyLogo::all();
+
+        return view('backend.pages.companyLogo.logoList', compact('logo'));
+    }
 }
