@@ -11,7 +11,7 @@ class RoomController extends Controller
 {
    public function room_page(){
     $rooms = Room::with('features','facilities')->get();
-    Features::with('features')->get();
+    
     return view('frontend.fixed.room-page',compact('rooms'));
    }
 

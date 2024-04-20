@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function home(){
         $rooms = Room::all();
-        Features::with('features')->get();
+      
         return view('frontend.fixed.main',compact('rooms'));
     }
 }
