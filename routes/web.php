@@ -31,6 +31,9 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/room-page', [FrontendRoomController::class, 'room_page'])->name('room.page');
 Route::get('/room-details-page/{id}', [FrontendRoomController::class, 'room_details_page'])->name('room.details.page');
 Route::post('/Check-Room-Availability', [RoomAvailabilityController::class, 'CheckRoomAvailability'])->name('room.availability');
+Route::get('/contact-page', [ContactController::class, 'contact_us'])->name('contact.page');
+Route::post('/contact-page-store', [ContactController::class, 'contact_store'])->name('contact.store');
+
 //Middleware for check valid user
 Route::group(['middleware' => 'customerAuth'], function () {
     //
@@ -51,7 +54,6 @@ Route::group(['middleware' => 'auth', 'admin', 'prefix' => 'admin'], function ()
     Route::get('/features-delete/{id}', [BannerController::class, 'bannerDelete'])->name('banner.delete');
     Route::resource('setting', SettingController::class);
     Route::post('/banner-store', [BannerController::class, 'bannerStore'])->name('banner.store');
-    Route::get('/contact-page', [ContactController::class, 'contact_us'])->name('contact.page');
-    Route::post('/contact-page-store', [ContactController::class, 'contact_store'])->name('contact.store');
+
 
 });

@@ -84,23 +84,38 @@
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <input type="text" class="form-control" id="name" name="name">
+                        @error('name')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" required>
+                        <input type="text" class="form-control" id="address" name="address">
+                        @error('address')
+                        <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone</label>
-                        <input type="text" class="form-control" id="phone" name="phone" required>
+                        <input type="text" class="form-control" id="phone" name="phone">
+                        @error('phone')
+                        <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <input type="email" class="form-control" id="email" name="email">
+                        @error('email')
+                        <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
+                        <input type="password" class="form-control" id="password" name="password">
+                        @error('password')
+                        <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
                     <button type="submit" class="b-tag btn btn-primary" style="color: black">Register</button>
                 </form>

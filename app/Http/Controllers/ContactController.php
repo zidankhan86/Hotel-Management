@@ -37,25 +37,9 @@ class ContactController extends Controller
 
         ]);
 
-        notify()->success('Thank you for your feedback.');
-
-        return back();
+        return back()->with('success','Thank you for your feedback.');
 
     }
 
-    public function contactlist()
-    {
 
-        $feedback = Contact::all();
-
-        return view('backend.pages.feedback.feedback', compact('feedback'));
-    }
-
-    public function contactview($id)
-    {
-
-        $messages = Contact::find($id);
-
-        return view('backend.pages.feedback.feedbackView', compact('messages'));
-    }
 }
