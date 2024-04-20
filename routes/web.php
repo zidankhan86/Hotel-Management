@@ -16,7 +16,8 @@ use App\Http\Controllers\SettingController;
 
 
 
-
+//profile
+Route::get('/profile',[ProfileController::class,'profile']);
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/login-frontend', [LoginController::class, 'showLoginFormFrontend'])->name('login.frontend');
@@ -29,11 +30,11 @@ Route::post('/registration', [LoginController::class, 'registrationStore'])->nam
 
 //Login
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'loginProcess'])->name('login.submit');
+Route::post('/login-submit', [LoginController::class, 'loginProcess'])->name('login.submit');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/room-page', [FrontendRoomController::class, 'room_page'])->name('room.page');
-
+Route::get('/room-details-page/{id}', [FrontendRoomController::class, 'room_details_page'])->name('room.details.page');
 //Middleware for check valid user
 Route::group(['middleware' => 'customerAuth'], function () {
 //
@@ -41,24 +42,16 @@ Route::group(['middleware' => 'customerAuth'], function () {
 
 //middleware auth and admin
 Route::group(['middleware' => 'auth','admin','prefix'=>'admin'], function () {
-
-    Route::get('/admin', function () {
-        return view('backend.index');
-    });
-
+    
+Route::get('/admin', function () {return view('backend.index'); });
 Route::get('/', [IndexController::class, 'dashboard'])->name('dashboard');   
-//profile
-Route::get('/profile',[ProfileController::class,'profile']);
 Route::get('/admin-profile',[ProfileController::class,'adminProfile']);
-
-Route::get('/', [IndexController::class, 'dashboard'])->name('dashboard');
 Route::resource('room', RoomController::class);
 Route::resource('facilities', FacilitiesController::class);
 Route::get('/facilities-delete/{id}', [BannerController::class, 'bannerdelete'])->name('banner.delete');
 Route::resource('features', FeaturesController::class);
 Route::get('/features-delete/{id}', [BannerController::class, 'bannerDelete'])->name('banner.delete');
 Route::resource('setting', SettingController::class);
-
 Route::post('/banner-store', [BannerController::class, 'bannerStore'])->name('banner.store');
 
 
