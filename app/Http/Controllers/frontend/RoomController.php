@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class RoomController extends Controller
 {
    public function room_page(){
-    $rooms = Room::with('features','facilities')->get();
+    $rooms = Room::all();
     
     return view('frontend.fixed.room-page',compact('rooms'));
    }
