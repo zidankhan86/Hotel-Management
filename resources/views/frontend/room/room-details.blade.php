@@ -71,7 +71,7 @@
                     <form action="{{ route('room.availability') }}" method="POST">
                         @csrf
                         <input type="hidden" name="room_id" value="{{ $room_details->id }}">
-
+                    
                         <div class="check-date">
                             <label for="date-in">Check In:</label>
                             <input type="text" class="date-input" id="date-in" name="check_in_date" placeholder="Select check-in date" autocomplete="off">
@@ -82,8 +82,27 @@
                             <input type="text" class="date-input" id="date-out" name="check_out_date" placeholder="Select check-out date" autocomplete="off">
                             <i class="icon_calendar"></i>
                         </div>
+                    
+                        <div class="check-date">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name">
+                        </div>
+                        <div class="check-date">
+                            <label for="address">Address:</label>
+                            <input id="address" name="address" placeholder="Your Address"></input>
+                        </div>
+                        <div class="check-date">
+                            <label for="phone">Phone:</label>
+                            <input type="text" id="phone" name="phone" placeholder="Your Phone Number">
+                        </div>
+                        <div class="check-date">
+                            <label for="note">Note:</label>
+                            <input id="note" name="note" placeholder="Any additional notes"></input>
+                        </div>
+                    
                         <button type="submit">Check Availability</button>
                     </form>
+                    
                     
                 </div>
             </div>

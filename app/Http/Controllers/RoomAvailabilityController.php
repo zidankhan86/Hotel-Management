@@ -17,6 +17,10 @@ class RoomAvailabilityController extends Controller
         $room_id = $request->input('room_id');
         $check_in_date = date('Y-m-d H:i:s', strtotime($request->input('check_in_date')));
         $check_out_date = date('Y-m-d H:i:s', strtotime($request->input('check_out_date')));
+        $name = $request->input('name');
+        $address = $request->input('address');
+        $phone = $request->input('phone');
+        $note = $request->input('note');
 
         // Check if the room is already booked for the given dates
         $existing_booking = Booking::where('room_id', $room_id)
@@ -32,20 +36,21 @@ class RoomAvailabilityController extends Controller
             ->first();
 
         if ($existing_booking) {
-
-            return back()->with('error', 'time of booking already exists');
+            return back()->with('error', 'Time of booking already exists');
         } else {
-
             Booking::create([
                 'user_id' => $user_id,
                 'room_id' => $room_id,
                 'check_in' => $check_in_date,
                 'check_out' => $check_out_date,
                 'status' => 'pending',
+                'name' => $name,
+                'address' => $address,
+                'phone' => $phone,
+                'note' => $note,
             ]);
 
-            return back()->with('success', 'booking successful');
-
+            return back()->with('success', 'Booking successful');
         }
     }
 }
