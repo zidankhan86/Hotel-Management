@@ -65,26 +65,19 @@ class RoomController extends Controller
         ]);
 
         if ($request->has('features_id')) {
-            $names = $request->input('names', []); 
-            foreach ($request->features_id as $key => $featureId) {
-                $name = isset($names[$key]) ? $names[$key] : null; 
+            foreach ($request->features_id as $featureId) {
                 RoomFeature::create([
                     'room_id' => $room->id,
                     'feature_id' => $featureId,
-                    'name' => $name 
                 ]);
             }
         }
-        
 
         if ($request->has('facilities_id')) {
-            $names = $request->input('names', []); 
-            foreach ($request->facilities_id as $key=> $facilitiesId) {
-                $name = isset($names[$key]) ? $names[$key] : null; 
+            foreach ($request->facilities_id as $facilitiesId) {
                 RoomFacilities::create([
                     'room_id' => $room->id,
                     'facilities_id' => $facilitiesId,
-                    'name' => $name 
                 ]);
             }
         }

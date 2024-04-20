@@ -6,6 +6,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\FacilitiesController;
@@ -53,6 +54,7 @@ Route::resource('features', FeaturesController::class);
 Route::get('/features-delete/{id}', [BannerController::class, 'bannerDelete'])->name('banner.delete');
 Route::resource('setting', SettingController::class);
 Route::post('/banner-store', [BannerController::class, 'bannerStore'])->name('banner.store');
-
+Route::get('/contact-page', [ContactController::class, 'contact_us'])->name('contact.page');
+Route::post('/contact-page-store', [ContactController::class, 'contact_store'])->name('contact.store');
 
 });
