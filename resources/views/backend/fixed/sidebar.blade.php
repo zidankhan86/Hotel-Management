@@ -32,7 +32,7 @@
                      
                     </nav>
                 </div>
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{route('booking.list')}}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
                     Booking
                 </a>

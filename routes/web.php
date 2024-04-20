@@ -9,6 +9,7 @@ use App\Http\Controllers\frontend\RoomController as FrontendRoomController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomAvailabilityController;
 use App\Http\Controllers\RoomController;
@@ -23,7 +24,6 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::post('/registration', [LoginController::class, 'registrationStore'])->name('registration.submit');
 
 //Backend
-
 //Login
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login-submit', [LoginController::class, 'loginProcess'])->name('login.submit');
@@ -56,5 +56,6 @@ Route::group(['middleware' => 'auth', 'admin', 'prefix' => 'admin'], function ()
     Route::get('/banner-delete/{id}', [BannerController::class, 'bannerdelete'])->name('banner.delete');
     Route::post('/about-store', [AboutController::class, 'about_store'])->name('about.store');
     Route::get('/about-delete/{id}', [AboutController::class,'about_delete'])->name('about.delete');
+    Route::get('/booking-list', [OrderController::class,'booking_list'])->name('booking.list');
 
 });

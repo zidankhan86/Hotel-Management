@@ -2,23 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Order;
 
 class OrderController extends Controller
 {
-    public function orderList()
+    public function booking_list()
     {
 
-        $orders = Order::latest()->get();
+        $orders = Booking::latest()->get();
 
-        return view('backend.pages.order.orderList', compact('orders'));
+        return view('backend.pages.order.bookin-list', compact('orders'));
     }
 
-    public function orderinvoice($id)
-    {
-
-        $invoice = Order::find($id);
-
-        return view('backend.pages.order.orderView', compact('invoice'));
-    }
+   
 }

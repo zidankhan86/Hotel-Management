@@ -39,7 +39,7 @@
                     <h6>Hero Table</h6>
 
                     @php
-                    $banners = App\Models\Banner::simplePaginate(1);
+                    $banners = App\Models\Banner::all();
                     @endphp
 
                     @if($banners->isEmpty())
@@ -82,7 +82,7 @@
                     </table>
                  
                 </body>
-                <p> {{$banners->links()}}</p>
+              
                  @endif 
                 {{--Modal --}}
                 
@@ -186,7 +186,7 @@
                     </table>
                   @endif
                 </body>
-                  
+                
                 {{--Modal --}}
                 
                 <div class="modal" id="myModal" tabindex="-1">
