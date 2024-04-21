@@ -118,6 +118,7 @@
                         <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
+                    <input type="hidden" name="role" value="customer">
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" name="password">

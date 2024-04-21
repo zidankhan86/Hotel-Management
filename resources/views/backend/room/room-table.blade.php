@@ -75,30 +75,48 @@
             <div class="col-md-6 mb-3">
               <label for="recipient-name" class="col-form-label">Category Name</label>
               <input type="text" class="form-control" id="recipient-name" name="category_name" placeholder="Deluxe">
+              @error('category_name')
+                  <p class="text-danger">{{$message}}</p>
+              @enderror
             </div>
             <div class="col-md-6 mb-3">
               <label for="recipient-name" class="col-form-label">Area</label>
               <input type="text" class="form-control" id="recipient-name" name="area" placeholder="500 sqft">
+              @error('area')
+                  <p class="text-danger">{{$message}}</p>
+              @enderror
             </div>
           </div>
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="recipient-name" class="col-form-label">Price</label>
               <input type="number" class="form-control" id="recipient-name" name="price" placeholder="5000">
+              @error('price')
+              <p class="text-danger">{{$message}}</p>
+              @enderror
             </div>
             <div class="col-md-6 mb-3">
               <label for="recipient-name" class="col-form-label">Quantity of Rooms</label>
               <input type="number" class="form-control" id="recipient-name" name="quantity" placeholder="10">
+              @error('quantity')
+              <p class="text-danger">{{$message}}</p>
+              @enderror
             </div>
           </div>
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="recipient-name" class="col-form-label">Adult(Max.)</label>
               <input type="number" class="form-control" name="adult" id="recipient-name" placeholder="4">
+              @error('adult')
+              <p class="text-danger">{{$message}}</p>
+              @enderror
             </div>
             <div class="col-md-6 mb-3">
               <label for="recipient-name" class="col-form-label">Children(Max.)</label>
               <input type="number" class="form-control" name="children" id="recipient-name" placeholder="1">
+              @error('children')
+              <p class="text-danger">{{$message}}</p>
+              @enderror
             </div>
             <div class="col-md-12 mb-3">
               <label for="recipient-name" class="col-form-label">Status</label>
@@ -138,6 +156,10 @@
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Description</label>
             <textarea class="form-control" id="message-text" name="description" placeholder="Write about room...."></textarea>
+
+            @error('description')
+            <p class="text-danger">{{$message}}</p>
+            @enderror
           </div>
 
           <div>

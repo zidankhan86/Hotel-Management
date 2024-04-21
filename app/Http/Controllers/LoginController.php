@@ -37,9 +37,8 @@ class LoginController extends Controller
             if ($user->role == 'admin') {
                 return redirect()->route('dashboard');
             } elseif ($user->role == 'customer') {
-                notify()->success('Login successful!.');
-
-                return redirect()->route('home');
+                
+                return redirect()->route('home')->with('success','Login successful!.');
             }
         }
 
@@ -53,7 +52,7 @@ class LoginController extends Controller
 
         Auth::logout();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
 
     }
 
@@ -64,15 +63,11 @@ class LoginController extends Controller
 
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
-            'phone' => [
-                'required',
-                'regex:/^(?:\+?88|0088)?01[13-9]\d{8}$/',
-            ],
+            'phone' => 'required',
             'address' => 'required',
             'name' => 'required',
             'password' => 'required|min:5',
-        ], [
-            'phone.regex' => 'The phone number should be a valid number.',
+       
         ]);
 
         if ($validator->fails()) {
