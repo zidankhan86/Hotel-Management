@@ -8,7 +8,7 @@
                 <div class="container">
                     <div class="container">
                     <br>
-                    <h4 class="text-success text-center">Order List</h4>
+                    <h4 class="text-success text-center">Booking List</h4>
                     <br>
                     <table class="table">
                         <thead>
