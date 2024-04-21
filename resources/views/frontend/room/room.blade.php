@@ -90,10 +90,10 @@
                                         <td class="r-o">Capacity:</td>
                                         <td>{{$item->children}} Children</td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <td class="r-o">Services:</td>
                                         <td>{{$item->name}} Bathroom,...</td>
-                                    </tr>
+                                    </tr> --}}
                                 </tbody>
                             </table>
                             <a href="{{route('room.details.page',$item->id)}}" class="primary-btn">More Details</a>
