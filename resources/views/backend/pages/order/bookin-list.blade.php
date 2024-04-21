@@ -34,16 +34,16 @@
 
                         @foreach ($orders as $item)
                         <tr>
-                            <th scope="row">{{ $id++ }}</th>
+                            <th scope="row">#{{ $id++ }}</th>
                             
-                            <td>{{ $item->check_in }}</td>
-                            <td>{{ $item->check_out }}</td>
+                            <td>{{ date('d M Y', strtotime($item->check_in)) }}</td>
+                            <td>{{ date('d M Y', strtotime($item->check_out)) }}</td>                            
                             <td>{{ $item->name }}</td>  
-                            <td>{{ $item->category_name }}</td>
-                            <td>{{ $item->price }} Tk.</td>
+                            <td>{{ $item->room?->category_name }}</td>
+                            <td>{{ $item->room?->price }} Tk.</td>
+                            <td>{{ $item->user?->email }}</td>
                             <td>{{ $item->address }}</td>
                             <td>{{ $item->phone }}</td>
-                            <td>{{ $item->email }}</td>
                             <td>{{ $item->note }}</td>
                             <td>{{ $item->status }}</td>
                                     
