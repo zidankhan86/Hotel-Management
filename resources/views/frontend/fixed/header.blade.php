@@ -22,7 +22,7 @@
                                 <li><a href="{{route('contact.page')}}">Contact</a></li>
                                 <li>
                                     @auth
-                                        <a href="./contact.html"><b>Profile</b></a>
+                                        <a href="{{route('profile')}}"><b>Profile</b></a>
                                     @else
                                         <a href="#" data-toggle="modal" data-target="#loginModal"><b>Login</b></a>
                                     @endauth
