@@ -29,17 +29,13 @@
                                 </li>
                                 <li>
                                     @auth
-                                        <a href="./contact.html" style="color: red"><b>Logout</b></a>
+                                        <a href="{{route('logout')}}" style="color: red"><b>Logout</b></a>
                                     @else
                                         <a href="#" data-toggle="modal" data-target="#registrationModal"><b>Registration</b></a>
                                     @endauth
                                 </li>
-                                
-                                
-                            </ul>
-                            
-                        </nav>
-                       
+                            </ul>                           
+                        </nav>                      
                     </div>
                 </div>
             </div>
