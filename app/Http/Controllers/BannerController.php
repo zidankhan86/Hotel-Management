@@ -14,7 +14,7 @@ class BannerController extends Controller
         $validator = Validator::make($request->all(), [
             'description' => 'required',
             'tittle' => 'nullable',
-            'image' => 'required|max:500',
+            'image' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -69,7 +69,7 @@ class BannerController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'tittle' => 'nullable',
-            'image' => 'required|max:500',
+            'image' => 'required',
         ]);
 
         if ($validator->fails()) {

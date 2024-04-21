@@ -11,7 +11,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between mb-3">
                 </div>
-                <h4>Hero Setup<a href="" style="float: right;" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" >+Add</a></h4>
+                <h4>Hero Setup<a href="#" style="float: right;" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" >+Add</a></h4>
                 
             </div>
         </div><br><br>
@@ -100,17 +100,26 @@
                           <div class="row">
                             <div class="col-md-12 mb-3">
                               <label for="recipient-name" class="col-form-label">Hero Title*</label>
-                              <input type="text" class="form-control" id="recipient-name" name="tittle" required placeholder="Sea Paradise">
+                              <input type="text" class="form-control" id="recipient-name" name="tittle" placeholder="Sea Paradise">
+                              @error('tittle')
+                                  <p class="text-danger">{{$message}}</p>
+                              @enderror
                             </div>
 
                             <div class="mb-3">
                               <label for="message-text" class="col-form-label">Description</label>
                               <textarea class="form-control" id="message-text" name="description" placeholder="Write long title here"></textarea>
+                              @error('description')
+                              <p class="text-danger">{{$message}}</p>
+                              @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">Choose an image*</label>
                                <input type="file" name="image" id="" class="form-control dropify">
+                               @error('image')
+                              <p class="text-danger">{{$message}}</p>
+                              @enderror
                               </div>
                               
                 
