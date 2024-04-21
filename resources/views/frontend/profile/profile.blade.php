@@ -157,39 +157,44 @@ mark {
 
                     </div><br><br>
 
-                     <!-- Booking History -->
-        <h3>Booking History</h3><br>
+                                <!-- Booking History -->
+                    <h3>Booking History</h3><br>
 
-        @foreach ($booked_hotel as $item)
-
-
-        <ul style="list-style: none; padding: 0; text-align: left;">
-            <li>
-                <strong style="color: blue;">Booking Name -</strong> - {{ $item->room->category_name }}<br>
-                <strong style="color: blue;">Order id: #{{ $item->price }}{{ $item->id }}67890</strong> <br> Pay- BDT {{ $item->room->price }}<br>
-                <span style="color: blue;">Placed on: {{ $item->created_at }}</span><br>
-                <strong style="color: blue;">Transaction No</strong> - {{ $item->transaction_id }}<br>
-            </li>
-            <p style="color: blue;">Order Status -<small style="color: blue;">{{ $item->status }}</small></p>
-            @if($item->status == 'Pending')
-            <a href="#" style="color: black" class="genric-btn danger circle">Cancel Booking</a>
-        @elseif($item->status == 'Canceled')
-            <button class="genric-btn danger circle" style="color: blue;">Booking Canceled</button>
-        @endif
-        </ul> <br> <hr style="color: black"> <hr>
-        @endforeach
+                    @if (empty($booked_hotel))
+                        No Booking History
+                    @else
+                        
+                   
+                    @foreach ($booked_hotel as $item)
 
 
+                    <ul style="list-style: none; padding: 0; text-align: left;">
+                        <li>
+                            <strong style="color: blue;">Booking Name -</strong> - {{ $item->room->category_name }}<br>
+                            <strong style="color: blue;">Order id: #{{ $item->price }}{{ $item->id }}67890</strong> <br> Pay- BDT {{ $item->room->price }}<br>
+                            <span style="color: blue;">Placed on: {{ $item->created_at }}</span><br>
+                            <strong style="color: blue;">Transaction No</strong> - {{ $item->transaction_id }}<br>
+                        </li>
+                        <p style="color: blue;">Order Status -<small style="color: blue;">{{ $item->status }}</small></p>
+                        @if($item->status == 'Pending')
+                        <a href="#" style="color: black" class="genric-btn danger circle">Cancel Booking</a>
+                    @elseif($item->status == 'Canceled')
+                        <button class="genric-btn danger circle" style="color: blue;">Booking Canceled</button>
+                    @endif
+                    </ul> <br> <hr style="color: black"> <hr>
+                    @endforeach
+
+
+                    @endif
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="about-avatar">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="">
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="about-avatar">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="">
-                </div>
-            </div>
-        </div>
-
-    </div>
 </section>
 @endsection
