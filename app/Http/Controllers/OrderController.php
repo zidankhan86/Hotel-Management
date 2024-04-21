@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Order;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -14,6 +15,17 @@ class OrderController extends Controller
 
         return view('backend.pages.order.bookin-list', compact('orders'));
     }
+
+    public function StatusUpdate(Request $request, $id)
+    {
+
+        $room = Booking::find($id);
+        $room->status = $request->status;
+        $room->save();
+        return redirect()->back()->with('success', 'Status updated successfully!');
+    
+    }
+    
 
    
 }

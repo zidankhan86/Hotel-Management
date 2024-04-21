@@ -17,7 +17,7 @@ use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
 //profile
-Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+Route::get('/profile', [ProfileController::class, 'profile']);
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 //Registration
@@ -57,5 +57,7 @@ Route::group(['middleware' => 'auth', 'admin', 'prefix' => 'admin'], function ()
     Route::post('/about-store', [AboutController::class, 'about_store'])->name('about.store');
     Route::get('/about-delete/{id}', [AboutController::class,'about_delete'])->name('about.delete');
     Route::get('/booking-list', [OrderController::class,'booking_list'])->name('booking.list');
+    Route::put('/Booking-Status/{id}', [OrderController::class, 'StatusUpdate'])->name('booking.status');
+
 
 });
