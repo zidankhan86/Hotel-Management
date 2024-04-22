@@ -37,7 +37,7 @@
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->id}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->category_name}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;">
-            <img height="50px" width="50px" src="{{url('/storage/uploads/'.$room->image)}}" alt="Room">
+            <img height="50px" width="50px" src="{{url('/uploads/'.$room->image)}}" alt="Room">
             </td>
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->area}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->price}}</td>
