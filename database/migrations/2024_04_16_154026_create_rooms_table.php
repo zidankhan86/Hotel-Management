@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('category_name');
             $table->string('area');
             $table->string('price');
-            $table->string('quantity');
+            $table->string('quantity')->nullable();
+            $table->string('available')->nullable();
             $table->string('adult');
             $table->string('children');
             $table->longText('description');

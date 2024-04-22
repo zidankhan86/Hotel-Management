@@ -43,21 +43,19 @@ Route::group(['middleware' => 'customerAuth'], function () {
 //middleware auth and admin
 Route::group(['middleware' => 'auth', 'admin', 'prefix' => 'admin'], function () {
 
- 
     Route::get('/', [IndexController::class, 'dashboard'])->name('dashboard');
     Route::get('/admin-profile', [ProfileController::class, 'adminProfile']);
     Route::resource('room', RoomController::class);
     Route::resource('facilities', FacilitiesController::class);
     Route::get('/facilities-delete/{id}', [FacilitiesController::class, 'facilities_delete'])->name('facilities.delete');
     Route::resource('features', FeaturesController::class);
-    Route::get('/features-delete/{id}', [FeaturesController::class,'features_delete'])->name('features.delete');
+    Route::get('/features-delete/{id}', [FeaturesController::class, 'features_delete'])->name('features.delete');
     Route::resource('setting', SettingController::class);
     Route::post('/banner-store', [BannerController::class, 'bannerStore'])->name('banner.store');
     Route::get('/banner-delete/{id}', [BannerController::class, 'bannerdelete'])->name('banner.delete');
     Route::post('/about-store', [AboutController::class, 'about_store'])->name('about.store');
-    Route::get('/about-delete/{id}', [AboutController::class,'about_delete'])->name('about.delete');
-    Route::get('/booking-list', [OrderController::class,'booking_list'])->name('booking.list');
+    Route::get('/about-delete/{id}', [AboutController::class, 'about_delete'])->name('about.delete');
+    Route::get('/booking-list', [OrderController::class, 'booking_list'])->name('booking.list');
     Route::put('/Booking-Status/{id}', [OrderController::class, 'StatusUpdate'])->name('booking.status');
-
 
 });

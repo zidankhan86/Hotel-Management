@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Room;
 use App\Models\About;
+use App\Models\Room;
 
 class HomeController extends Controller
 {
@@ -11,6 +11,7 @@ class HomeController extends Controller
     {
         $rooms = Room::all();
         $about = About::first();
-        return view('frontend.fixed.main', compact('rooms','about'));
+
+        return view('frontend.fixed.main', compact('rooms', 'about'));
     }
 }

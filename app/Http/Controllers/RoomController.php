@@ -47,7 +47,7 @@ class RoomController extends Controller
         $imageName = null;
         $imageName = time().'.'.$request->file('image')->extension();
         $request->file('image')->move(public_path('uploads'), $imageName);
-                //dd($imageName);
+        //dd($imageName);
         $room = Room::create([
             'category_name' => $request->category_name,
             'area' => $request->area,
@@ -80,8 +80,6 @@ class RoomController extends Controller
 
         return back()->with('success', 'Room Created successfully!!');
     }
-
-   
 
     /**
      * Update the specified resource in storage.

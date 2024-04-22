@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers\frontend;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class AboutController extends Controller
 {
-   public function about_page(){
-    $about = About::first();
-    return view('frontend.about.about-page',compact('about'));
-   }
+    public function about_page()
+    {
+        $about = About::first();
 
-   public function about_store(Request $request)
+        return view('frontend.about.about-page', compact('about'));
+    }
+
+    public function about_store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'description' => 'required',

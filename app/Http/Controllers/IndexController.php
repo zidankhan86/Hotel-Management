@@ -14,6 +14,6 @@ class IndexController extends Controller
         $total_book = Booking::count();
         $total_users = User::count();
 
-        return view('backend.dashboard.dashboard', compact('total_rooms','total_book','total_users'));
+        return view('backend.dashboard.dashboard', compact('total_rooms', 'total_book', 'total_users'));
     }
 }

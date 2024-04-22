@@ -37,8 +37,8 @@ class LoginController extends Controller
             if ($user->role == 'admin') {
                 return redirect()->route('dashboard');
             } elseif ($user->role == 'customer') {
-                
-                return redirect()->route('home')->with('success','Login successful!.');
+
+                return redirect()->route('home')->with('success', 'Login successful!.');
             }
         }
 
@@ -56,8 +56,6 @@ class LoginController extends Controller
 
     }
 
-   
-
     public function registrationStore(Request $request)
     {
 
@@ -67,7 +65,7 @@ class LoginController extends Controller
             'address' => 'required',
             'name' => 'required',
             'password' => 'required|min:5',
-       
+
         ]);
 
         if ($validator->fails()) {
