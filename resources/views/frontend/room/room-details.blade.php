@@ -68,7 +68,7 @@
             <div class="col-lg-4">
                 <div class="room-booking">
                     <h3>Your Reservation</h3>
-                    <form action="{{ route('room.availability') }}" method="POST">
+                    <form action="{{ {{ route('pay.now',$room_details->id) }} }}" method="POST">
                         @csrf
                         <input type="hidden" name="room_id" value="{{ $room_details->id }}">
                     
