@@ -33,7 +33,7 @@
                                 <div class="rating">
                                  
                                 </div>
-                                <a href="#">Booking Now</a>
+                                
                             </div>
                         </div>
                         <h2>{{$room_details->price}} tk<span>/Pernight</span></h2>
@@ -100,7 +100,7 @@
                             <input id="note" name="note" placeholder="Any additional notes"></input>
                         </div>
                     
-                        <button type="submit">Check Availability</button>
+                        <button type="submit">Confirm Booking</button>
                     </form>
                     
                     
