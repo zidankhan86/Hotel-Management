@@ -33,7 +33,7 @@
                                 <div class="rating">
                                  
                                 </div>
-                                <a href="#">Booking Now</a>
+                                
                             </div>
                         </div>
                         <h2>{{$room_details->price}} tk<span>/Pernight</span></h2>
@@ -68,7 +68,7 @@
             <div class="col-lg-4">
                 <div class="room-booking">
                     <h3>Your Reservation</h3>
-                    <form action="{{ route('room.availability') }}" method="POST">
+                    <form action="{{ {{ route('pay.now',$room_details->id) }} }}" method="POST">
                         @csrf
                         <input type="hidden" name="room_id" value="{{ $room_details->id }}">
                     
@@ -100,7 +100,7 @@
                             <input id="note" name="note" placeholder="Any additional notes"></input>
                         </div>
                     
-                        <button type="submit">Check Availability</button>
+                        <button type="submit">Confirm Booking</button>
                     </form>
                     
                     

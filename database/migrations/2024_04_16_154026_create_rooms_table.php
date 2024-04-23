@@ -23,6 +23,7 @@ return new class extends Migration
             $table->longText('description');
             $table->string('image')->nullable();
             $table->boolean('status');
+            $table->foreignId('branch_id');
             $table->timestamps();
         });
 

@@ -16,7 +16,14 @@
       <p>{{ session('success') }}</p>
   </div>
   @endif
-    <a href="" style="float: right;" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" >+Add</a><br>
+  <div style="display: flex; justify-content: flex-end;">
+    <div>
+      <a href="#" class="btn btn-dark mr-2" data-bs-toggle="modal" data-bs-target="#createBranchModal">+Add Branch</a>
+      <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">+Add Room</a>
+  </div>
+  
+</div>
+
     <table style="width: 100%; border-collapse: collapse;">
       <thead><br>
         <tr>
@@ -87,6 +94,18 @@
               @enderror
             </div>
           </div>
+
+          <div class="col-md-12 mb-3">
+            <label class="col-form-label">Select Branch</label>
+            <select name="branch_id" class="form-control">
+              <option name="" id="">Select a Branch </option>
+                @foreach ($branch as $branch)
+                <option value="{{ $branch->id }}">{{ $branch->branch_name ?? ''}}</option>
+                @endforeach
+            </select>
+        </div>
+        
+
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="recipient-name" class="col-form-label">Price</label>
@@ -200,6 +219,7 @@
                                 <input type="text" class="form-control" id="edit_area" name="area" value="{{$room->area}}">
                             </div>
                         </div>
+                      
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="edit_price" class="col-form-label">Price</label>
@@ -320,4 +340,45 @@
         </div>
       </div>
     </div>
+
+    <!-- Create Branch Modal -->
+<div class="modal fade" id="createBranchModal" tabindex="-1" aria-labelledby="createBranchModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="createBranchModalLabel">Create Branch</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form action="{{route('branch.store')}}" method="POST">
+                  @csrf
+                  <div class="mb-3">
+                      <label for="branch_name" class="form-label">Branch Name</label>
+                      <input type="text" class="form-control" id="branch_name" name="branch_name" required>
+                  </div>
+                  
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </form>
+          </div>
+          
+      </div>
+  </div>
+</div>
+
+<!-- Script to Trigger Modal -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      var createBranchModal = new bootstrap.Modal(document.getElementById('createBranchModal'));
+      var createBranchModalButton = document.getElementById('createBranchModalButton');
+
+      // Open modal when the button is clicked
+      createBranchModalButton.addEventListener('click', function () {
+          createBranchModal.show();
+      });
+  });
+</script>
+
 @endsection

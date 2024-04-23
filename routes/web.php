@@ -1,20 +1,22 @@
 <?php
 
-use App\Http\Controllers\BannerController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\FacilitiesController;
-use App\Http\Controllers\FeaturesController;
-use App\Http\Controllers\frontend\AboutController;
-use App\Http\Controllers\frontend\RoomController as FrontendRoomController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\BranchController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RoomAvailabilityController;
-use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SettingController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FeaturesController;
+use App\Http\Controllers\FacilitiesController;
+use App\Http\Controllers\frontend\AboutController;
+use App\Http\Controllers\RoomAvailabilityController;
+use App\Http\Controllers\SslCommerzPaymentController;
+use App\Http\Controllers\frontend\RoomController as FrontendRoomController;
 
 //profile
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
@@ -34,6 +36,10 @@ Route::get('/contact-page', [ContactController::class, 'contact_us'])->name('con
 Route::post('/contact-page-store', [ContactController::class, 'contact_store'])->name('contact.store');
 Route::get('/about-page', [AboutController::class, 'about_page'])->name('about.page');
 
+Route::post('/pay/{id}', [SslCommerzPaymentController::class, 'index'])->name('pay.now');
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 //Middleware for check valid user
 Route::group(['middleware' => 'customerAuth'], function () {
     Route::get('/room-details-page/{id}', [FrontendRoomController::class, 'room_details_page'])->name('room.details.page');
@@ -51,6 +57,7 @@ Route::group(['middleware' => 'auth', 'admin', 'prefix' => 'admin'], function ()
     Route::resource('features', FeaturesController::class);
     Route::get('/features-delete/{id}', [FeaturesController::class, 'features_delete'])->name('features.delete');
     Route::resource('setting', SettingController::class);
+    Route::resource('branch', BranchController::class);
     Route::post('/banner-store', [BannerController::class, 'bannerStore'])->name('banner.store');
     Route::get('/banner-delete/{id}', [BannerController::class, 'bannerdelete'])->name('banner.delete');
     Route::post('/about-store', [AboutController::class, 'about_store'])->name('about.store');
