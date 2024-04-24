@@ -42,6 +42,7 @@ class BranchController extends Controller
 
         return back()->with('success', 'Branch created successfully!!');
     }
+
     /**
      * Display the specified resource.
      */

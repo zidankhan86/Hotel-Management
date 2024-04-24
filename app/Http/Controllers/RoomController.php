@@ -20,7 +20,7 @@ class RoomController extends Controller
         $branch = Branch::all();
         $rooms = Room::simplePaginate(8);
 
-        return view('backend.room.room-table', compact('features', 'facilities', 'rooms','branch'));
+        return view('backend.room.room-table', compact('features', 'facilities', 'rooms', 'branch'));
     }
 
     public function store(Request $request)
@@ -28,18 +28,18 @@ class RoomController extends Controller
 
         $validator = Validator::make($request->all(), [
 
-            'category_name'     => 'required',
-            'area'              => 'required',
-            'price'             => 'required',
-            'quantity'          => 'required',
-            'adult'             => 'required',
-            'children'          => 'required',
-            'description'       => 'required',
-            'image'             => 'required',
-            'status'            => 'required',
-            'features_id'       => 'nullable',
-            'facilities_id'     => 'nullable',
-            'branch_id'         =>'required'
+            'category_name' => 'required',
+            'area' => 'required',
+            'price' => 'required',
+            'quantity' => 'required',
+            'adult' => 'required',
+            'children' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            'status' => 'required',
+            'features_id' => 'nullable',
+            'facilities_id' => 'nullable',
+            'branch_id' => 'required',
 
         ]);
 
@@ -53,15 +53,15 @@ class RoomController extends Controller
         //dd($imageName);
         $room = Room::create([
             'category_name' => $request->category_name,
-            'area'          => $request->area,
-            'price'         => $request->price,
-            'quantity'      => $request->quantity,
-            'adult'         => $request->adult,
-            'children'      => $request->children,
-            'description'   => $request->description,
-            'image'         => $imageName,
-            'status'        => $request->status,
-            'branch_id'     => $request->branch_id,
+            'area' => $request->area,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'adult' => $request->adult,
+            'children' => $request->children,
+            'description' => $request->description,
+            'image' => $imageName,
+            'status' => $request->status,
+            'branch_id' => $request->branch_id,
         ]);
 
         if ($request->has('features_id')) {

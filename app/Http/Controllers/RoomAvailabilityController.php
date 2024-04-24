@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,27 +18,17 @@ class RoomAvailabilityController extends Controller
         $room_id = $request->input('room_id');
         $check_in_date = date('Y-m-d H:i:s', strtotime($request->input('check_in_date')));
         $check_out_date = date('Y-m-d H:i:s', strtotime($request->input('check_out_date')));
+        $total_rooms = $request->input('total_rooms');
         $name = $request->input('name');
         $address = $request->input('address');
         $phone = $request->input('phone');
         $note = $request->input('note');
 
-        // Check if the room is already booked for the given dates
-        $existing_booking = Booking::where('room_id', $room_id)
-            ->where(function ($query) use ($check_in_date, $check_out_date) {
-                $query->whereBetween('check_in', [$check_in_date, $check_out_date])
-                    ->orWhereBetween('check_out', [$check_in_date, $check_out_date])
-                    ->orWhere(function ($q) use ($check_in_date, $check_out_date) {
-                        $q->where('check_in', '<=', $check_in_date)
-                            ->where('check_out', '>=', $check_out_date);
-                    });
-            })
-            ->latest()
-            ->first();
+        // Get the room details
+        $room = Room::find($room_id);
 
-        if ($existing_booking) {
-            return back()->with('error', 'Time of booking already exists');
-        } else {
+        // Check if the room has enough available rooms for the booking
+        if ($room->available_rooms >= $total_rooms) {
             Booking::create([
                 'user_id' => $user_id,
                 'room_id' => $room_id,
@@ -48,9 +39,12 @@ class RoomAvailabilityController extends Controller
                 'address' => $address,
                 'phone' => $phone,
                 'note' => $note,
+                'total_rooms' => $total_rooms,
             ]);
 
             return back()->with('success', 'Booking successful');
+        } else {
+            return back()->with('error', 'No room available');
         }
     }
 }

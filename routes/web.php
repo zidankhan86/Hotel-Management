@@ -1,22 +1,22 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\RoomController;
-use App\Http\Controllers\IndexController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\FacilitiesController;
+use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\frontend\AboutController;
-use App\Http\Controllers\RoomAvailabilityController;
-use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\frontend\RoomController as FrontendRoomController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoomAvailabilityController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SslCommerzPaymentController;
+use Illuminate\Support\Facades\Route;
 
 //profile
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');

@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Branch;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
@@ -29,6 +28,6 @@ class Room extends Model
 
     public function branch()
     {
-        return $this->belongsTo(Branch::class,'branch_id','id');
+        return $this->belongsTo(Branch::class, 'branch_id', 'id');
     }
 }

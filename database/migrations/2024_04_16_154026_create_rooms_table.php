@@ -16,14 +16,14 @@ return new class extends Migration
             $table->string('category_name');
             $table->string('area');
             $table->string('price');
-            $table->string('quantity')->nullable();
-            $table->string('available')->nullable();
             $table->string('adult');
             $table->string('children');
             $table->longText('description');
             $table->string('image')->nullable();
             $table->boolean('status');
-            $table->foreignId('branch_id');
+            $table->foreignId('branch_id')->constrained()->onDelete('cascade');
+            $table->integer('total_rooms');
+            $table->integer('available_rooms');
             $table->timestamps();
         });
 

@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('room_id')->constrained()->onDelete('cascade');
+            $table->integer('total_rooms');
             $table->dateTime('check_in');
             $table->dateTime('check_out')->nullable();
             $table->string('status')->default('pending');
+            $table->boolean('checking_status')->default(false);
             $table->string('name');
             $table->text('address');
             $table->string('phone');
