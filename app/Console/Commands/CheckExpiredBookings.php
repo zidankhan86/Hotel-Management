@@ -28,7 +28,7 @@ class CheckExpiredBookings extends Command
      */
     public function handle()
     {
-        $bookings = Booking::where('checking_status', false)
+        $bookings = Booking::where('checking_status', false)->where('status', 'confirmed')
             ->where('check_out', '<', Carbon::now())
             ->get();
 
