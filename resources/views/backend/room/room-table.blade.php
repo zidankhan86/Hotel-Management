@@ -356,7 +356,10 @@
                       <label for="branch_name" class="form-label">Branch Name</label>
                       <input type="text" class="form-control" id="branch_name" name="branch_name" required>
                   </div>
-                  
+                  <div class="mb-3">
+                    <label for="location" class="form-label">Branch Name</label>
+                    <input type="text" class="form-control" id="location" name="location" required>
+                </div>
                   <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Create</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

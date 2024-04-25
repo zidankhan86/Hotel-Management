@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Branch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -29,6 +28,7 @@ class BranchController extends Controller
         $validator = Validator::make($request->all(), [
 
             'branch_name' => 'required',
+            'location' => 'required',
 
         ]);
 
@@ -38,6 +38,7 @@ class BranchController extends Controller
 
         Branch::create([
             'branch_name' => $request->branch_name,
+            "location"=> $request->location
         ]);
 
         return back()->with('success', 'Branch created successfully!!');
