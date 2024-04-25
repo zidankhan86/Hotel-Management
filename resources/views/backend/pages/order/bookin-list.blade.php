@@ -94,7 +94,7 @@
                             <label for="edit_status" class="col-form-label">Status</label>
                             <select name="status" id="edit_status" class="form-control">
 
-                                <option value="active" {{$item->status == 'confirmed' ? 'selected' : ''}}>Confirm</option>
+                                <option value="confirmed" {{$item->status == 'confirmed' ? 'selected' : ''}}>Confirm</option>
                                 <option value="pending" {{$item->status == 'pending' ? 'selected' : ''}}>Pending
                                 </option>
                                 <option value="cancel" {{$item->status == 'cancel' ? 'selected' : ''}}>Cancel</option>
