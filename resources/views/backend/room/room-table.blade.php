@@ -34,6 +34,7 @@
             <th style="padding: 8px; background-color: #0e0d0d; color: white;">Price</th>
             <th style="padding: 8px; background-color: #0e0d0d; color: white;">Quantity</th>
             <th style="padding: 8px; background-color: #0e0d0d; color: white;">Availeable Rooms</th>
+            <th style="padding: 8px; background-color: #0e0d0d; color: white;">Branch</th>
             <th style="padding: 8px; background-color: #0e0d0d; color: white;">Status</th>
             <th style="padding: 8px; background-color: #0e0d0d; color: white;">Action</th>
         </tr>
@@ -51,6 +52,7 @@
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->price}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->total_rooms}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->available_rooms}}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->branch->branch_name}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->status == 1 ? 'Active':'Inactive'}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;"><a href="#" data-bs-toggle="modal" data-bs-target="#editModal{{$room->id}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
           

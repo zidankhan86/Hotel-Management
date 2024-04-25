@@ -19,6 +19,7 @@ class RoomController extends Controller
         $facilities = facilities::all();
         $branch = Branch::all();
         $rooms = Room::simplePaginate(8);
+        Room::with('branch')->get();
 
         return view('backend.room.room-table', compact('features', 'facilities', 'rooms', 'branch'));
     }
@@ -26,26 +27,26 @@ class RoomController extends Controller
     public function store(Request $request)
     {
 
-        // $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
 
-        //     'category_name' => 'required',
-        //     'area' => 'required',
-        //     'price' => 'required',
-        //     'total_rooms' => 'required',
-        //     'adult' => 'required',
-        //     'children' => 'required',
-        //     'description' => 'required',
-        //     'image' => 'required',
-        //     'status' => 'required',
-        //     'features_id' => 'nullable',
-        //     'facilities_id' => 'nullable',
-        //     'branch_id' => 'required',
+            'category_name' => 'required',
+            'area' => 'required',
+            'price' => 'required',
+            'total_rooms' => 'required',
+            'adult' => 'required',
+            'children' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            'status' => 'required',
+            'features_id' => 'nullable',
+            'facilities_id' => 'nullable',
+            'branch_id' => 'required',
 
-        // ]);
+        ]);
 
-        // if ($validator->fails()) {
-        //     return redirect()->back()->withErrors($validator)->withInput();
-        // }
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         $imageName = null;
         $imageName = time().'.'.$request->file('image')->extension();
@@ -125,8 +126,6 @@ class RoomController extends Controller
             $room->update(['image' => $imageName]);
         }
 
-        // Update room features and facilities
-        // (You may need to modify this part based on your actual implementation)
 
         return back()->with('success', 'Room updated successfully!');
     }

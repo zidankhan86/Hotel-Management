@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
 use App\Models\Room;
 
 class RoomController extends Controller
 {
     public function room_page()
     {
-        $rooms = Room::all();
-
+        $rooms =  Room::with('branch')->get();
+       
         return view('frontend.fixed.room-page', compact('rooms'));
     }
 
