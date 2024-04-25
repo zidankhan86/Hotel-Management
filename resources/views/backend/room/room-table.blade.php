@@ -231,7 +231,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="edit_quantity" class="col-form-label">Quantity of Rooms</label>
-                                <input type="number" class="form-control" id="edit_quantity" name="total_rooms" value="{{$room->quantity}}">
+                                <input type="number" class="form-control" id="edit_quantity" name="total_rooms" value="{{$room->total_rooms}}">
                             </div>
                         </div>
                         <div class="row">
@@ -282,7 +282,7 @@
 
                         <div class="mb-3">
                             <label for="edit_image" class="col-form-label">Choose New Image</label>
-                            <input type="file" class="dropify" data-default-file="{{url('/storage/uploads/'.$room->image)}}" name="image">
+                            <input type="file" class="dropify" data-default-file="{{url('/uploads/'.$room->image)}}" name="image">
                         </div>
                         
                         <div class="modal-footer">

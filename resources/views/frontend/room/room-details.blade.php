@@ -68,41 +68,61 @@
             <div class="col-lg-4">
                 <div class="room-booking">
                     <h3>Your Reservation</h3>
-                    <form action="{{ route('room.availability',$room_details->id) }}" method="POST">
+                    <form action="{{ route('pay.now',$room_details->id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="room_id" value="{{ $room_details->id }}">
                         <div class="check-date">
                             <label for="total_rooms">Total Room:</label>
                             <input type="number" min="1" id="total_rooms" name="total_rooms" placeholder="Total Room Quantity">
+                            @error('total_rooms')
+                                <p class="text-danger">{{$message}}</p>
+                            @enderror
                         </div>
                         <div class="check-date">
                             <label for="date-in">Check In:</label>
                             <input type="text" class="date-input" id="date-in" name="check_in_date" placeholder="Select check-in date" autocomplete="off">
                             <i class="icon_calendar"></i>
+                            @error('check_in_date')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                         </div>
                         <div class="check-date">
                             <label for="date-out">Check Out:</label>
                             <input type="text" class="date-input" id="date-out" name="check_out_date" placeholder="Select check-out date" autocomplete="off">
                             <i class="icon_calendar"></i>
+                            @error('check_out_date')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                         </div>
                     
                         <div class="check-date">
                             <label for="name">Name:</label>
                             <input type="text" id="name" name="name" placeholder="Your Name">
+                            @error('name')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                         </div>
                         <div class="check-date">
                             <label for="address">Address:</label>
                             <input id="address" name="address" placeholder="Your Address"></input>
+                            @error('address')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                         </div>
                         <div class="check-date">
                             <label for="phone">Phone:</label>
                             <input type="text" id="phone" name="phone" placeholder="Your Phone Number">
+                            @error('phone')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                         </div>
                         <div class="check-date">
                             <label for="note">Note:</label>
                             <input id="note" name="note" placeholder="Any additional notes"></input>
                         </div>
-                    
+                    <input type="hidden" name="transaction_id">
+                    <input type="hidden" name="currency">
+                    <input type="hidden" name="price" value="{{$room_details->price}}">
                         <button type="submit">Confirm Booking</button>
                     </form>
                     

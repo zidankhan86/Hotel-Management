@@ -19,27 +19,22 @@ class LoginController extends Controller
         // dd($request->all());
 
         // Validate the input fields
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
+        $credential = $request->only(['email', 'password']);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $credentials = $request->only(['email', 'password']);
-        $remember = $request->has('remember'); // Check if the "Remember Me" checkbox is checked
-
-        if (Auth::attempt($credentials, $remember)) {
-            $user = Auth::user();
-
-            if ($user->role == 'admin') {
-                return redirect()->route('dashboard');
-            } elseif ($user->role == 'customer') {
-
-                return redirect()->route('home')->with('success', 'Login successful!.');
+        if (Auth::attempt($credential)) {
+            if (auth()->user()->role == 'customer') {
+                return redirect()->route('home');
+            } elseif (auth()->user()->role == 'admin') {
+                return redirect()->route('dashboard')->withSuccess('Login Success');
             }
+        } else {
+           
+            return redirect()->back()->with('success','Invalid credentials. Please try again.');
+        
         }
 
         // Authentication failed

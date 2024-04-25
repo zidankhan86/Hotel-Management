@@ -35,19 +35,21 @@ Route::get('/room-page', [FrontendRoomController::class, 'room_page'])->name('ro
 Route::get('/contact-page', [ContactController::class, 'contact_us'])->name('contact.page');
 Route::post('/contact-page-store', [ContactController::class, 'contact_store'])->name('contact.store');
 Route::get('/about-page', [AboutController::class, 'about_page'])->name('about.page');
-
-Route::post('/pay/{id}', [SslCommerzPaymentController::class, 'index'])->name('pay.now');
 Route::post('/success', [SslCommerzPaymentController::class, 'success']);
 Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
 Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+
 //Middleware for check valid user
 Route::group(['middleware' => 'customerAuth'], function () {
     Route::get('/room-details-page/{id}', [FrontendRoomController::class, 'room_details_page'])->name('room.details.page');
     Route::post('/Check-Room-Availability', [RoomAvailabilityController::class, 'CheckRoomAvailability'])->name('room.availability');
+    Route::post('/pay', [SslCommerzPaymentController::class, 'index'])->name('pay.now');
+  
 });
 
 //middleware auth and admin
-Route::group(['middleware' => 'auth', 'admin', 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function() {
 
     Route::get('/', [IndexController::class, 'dashboard'])->name('dashboard');
     Route::get('/admin-profile', [ProfileController::class, 'adminProfile']);

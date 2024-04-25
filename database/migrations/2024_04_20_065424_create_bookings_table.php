@@ -24,6 +24,10 @@ return new class extends Migration
             $table->text('address');
             $table->string('phone');
             $table->text('note')->nullable();
+            $table->string('transaction_id');
+            $table->string('currency');
+            $table->string('price');
+            $table->string('email');
             $table->timestamps();
         });
     }

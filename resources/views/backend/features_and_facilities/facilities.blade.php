@@ -29,7 +29,7 @@
           <td style="border: 1px solid #ddd; padding: 8px;">{{$facilitiy->description}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;">
             
-          <a href="" class="btn btn-info"><i class="fas fa-edit"></i></a>
+          {{-- <a href="" class="btn btn-info"><i class="fas fa-edit"></i></a> --}}
           <a href="{{route('facilities.delete',$facilitiy->id)}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
           
           </td>

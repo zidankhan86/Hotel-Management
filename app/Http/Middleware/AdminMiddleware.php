@@ -15,11 +15,13 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user() && $request->user()->role === 'admin') {
+        if (auth()->check() && auth()->user()->role == 'admin'){
+
+
             return $next($request);
         }
 
-        return redirect()->route('home')->with('error', 'You do not have permission to access this page.');
+        return redirect('/')->with('error', 'You are not authorized to access this page.');
 
     }
 }

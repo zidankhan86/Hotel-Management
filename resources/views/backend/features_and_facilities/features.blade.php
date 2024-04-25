@@ -26,7 +26,7 @@
                 <td style="border: 1px solid #ddd; padding: 8px;">{{$feature->id}}</td>
                 <td style="border: 1px solid #ddd; padding: 8px;">{{$feature->name}}</td>
                 <td style="border: 1px solid #ddd; padding: 8px;">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#editModal{{$feature->id}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                    {{-- <a href="#" data-bs-toggle="modal" data-bs-target="#editModal{{$feature->id}}" class="btn btn-info"><i class="fas fa-edit"></i></a> --}}
 
                     <a href="{{route('features.delete',$feature->id)}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                 </td>

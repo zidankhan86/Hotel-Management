@@ -15,12 +15,12 @@ class AdminSeederTable extends Seeder
         User::create([
 
             'name' => 'Admin',
-            'email' => 'admin@mail.com',
+            "email"=>"admin@gmail.com",
+            "password"=>bcrypt('12345'),
             'phone' => '01712345678',
             'address' => 'Mirpur-1',
             'role' => 'admin',
-            'password' => 'password',
-
+            
         ]);
     }
 }
