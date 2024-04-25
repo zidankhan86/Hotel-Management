@@ -57,8 +57,8 @@
                                             <ul class="dropdown-menu">
                                                 <li><a href="#" data-bs-toggle="modal"
                                                         data-bs-target="#editModal{{$item->id}}"
-                                                        class="dropdown-item"><i class="fas fa-edit"></i> Edit</a></li>
-                                                {{-- <li><a class="dropdown-item" href="#">Another action</a></li> --}}
+                                                        class="dropdown-item"><i class="fas fa-edit"></i> Action</a></li>
+                                                
                                             </ul>
                                         </div>
                                     </td>
@@ -94,7 +94,7 @@
                             <label for="edit_status" class="col-form-label">Status</label>
                             <select name="status" id="edit_status" class="form-control">
 
-                                <option value="active" {{$item->status == 'active' ? 'selected' : ''}}>Active</option>
+                                <option value="active" {{$item->status == 'confirmed' ? 'selected' : ''}}>Confirm</option>
                                 <option value="pending" {{$item->status == 'pending' ? 'selected' : ''}}>Pending
                                 </option>
                                 <option value="cancel" {{$item->status == 'cancel' ? 'selected' : ''}}>Cancel</option>

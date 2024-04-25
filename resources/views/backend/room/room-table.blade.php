@@ -33,6 +33,7 @@
             <th style="padding: 8px; background-color: #0f0d0d; color: white;">Area</th>
             <th style="padding: 8px; background-color: #0e0d0d; color: white;">Price</th>
             <th style="padding: 8px; background-color: #0e0d0d; color: white;">Quantity</th>
+            <th style="padding: 8px; background-color: #0e0d0d; color: white;">Availeable Rooms</th>
             <th style="padding: 8px; background-color: #0e0d0d; color: white;">Status</th>
             <th style="padding: 8px; background-color: #0e0d0d; color: white;">Action</th>
         </tr>
@@ -48,7 +49,8 @@
             </td>
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->area}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->price}}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->quantity}}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->total_rooms}}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{$room->available_rooms}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;">{{$room->status == 1 ? 'Active':'Inactive'}}</td>
           <td style="border: 1px solid #ddd; padding: 8px;"><a href="#" data-bs-toggle="modal" data-bs-target="#editModal{{$room->id}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
           
@@ -57,7 +59,7 @@
           
         </tr>
   
-@endforeach
+    @endforeach
 
       </tbody>
     </table>
@@ -116,8 +118,8 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="recipient-name" class="col-form-label">Quantity of Rooms</label>
-              <input type="number" class="form-control" id="recipient-name" name="quantity" placeholder="10">
-              @error('quantity')
+              <input type="number" class="form-control" id="recipient-name" name="total_rooms" placeholder="10">
+              @error('total_rooms')
               <p class="text-danger">{{$message}}</p>
               @enderror
             </div>
@@ -227,7 +229,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="edit_quantity" class="col-form-label">Quantity of Rooms</label>
-                                <input type="number" class="form-control" id="edit_quantity" name="quantity" value="{{$room->quantity}}">
+                                <input type="number" class="form-control" id="edit_quantity" name="total_rooms" value="{{$room->quantity}}">
                             </div>
                         </div>
                         <div class="row">

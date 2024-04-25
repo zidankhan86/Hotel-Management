@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="room-details-item">
-                    <img src="{{url('/storage/uploads/'.$room_details->image)}}" alt="">
+                    <img src="{{url('/uploads/'.$room_details->image)}}" alt="">
                     <div class="rd-text">
                         <div class="rd-title">
                             <h3>{{$room_details->category_name}}</h3>

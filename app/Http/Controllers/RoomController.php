@@ -26,26 +26,26 @@ class RoomController extends Controller
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
+        // $validator = Validator::make($request->all(), [
 
-            'category_name' => 'required',
-            'area' => 'required',
-            'price' => 'required',
-            'quantity' => 'required',
-            'adult' => 'required',
-            'children' => 'required',
-            'description' => 'required',
-            'image' => 'required',
-            'status' => 'required',
-            'features_id' => 'nullable',
-            'facilities_id' => 'nullable',
-            'branch_id' => 'required',
+        //     'category_name' => 'required',
+        //     'area' => 'required',
+        //     'price' => 'required',
+        //     'total_rooms' => 'required',
+        //     'adult' => 'required',
+        //     'children' => 'required',
+        //     'description' => 'required',
+        //     'image' => 'required',
+        //     'status' => 'required',
+        //     'features_id' => 'nullable',
+        //     'facilities_id' => 'nullable',
+        //     'branch_id' => 'required',
 
-        ]);
+        // ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
+        // if ($validator->fails()) {
+        //     return redirect()->back()->withErrors($validator)->withInput();
+        // }
 
         $imageName = null;
         $imageName = time().'.'.$request->file('image')->extension();
@@ -55,7 +55,8 @@ class RoomController extends Controller
             'category_name' => $request->category_name,
             'area' => $request->area,
             'price' => $request->price,
-            'quantity' => $request->quantity,
+            'total_rooms' => $request->total_rooms,
+            'available_rooms' => $request->total_rooms,
             'adult' => $request->adult,
             'children' => $request->children,
             'description' => $request->description,
