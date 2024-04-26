@@ -63,12 +63,14 @@
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" name="password" required>
                     </div>
-                    <button type="submit" class="b-tag btn btn-success" style="color: black">Login</button>
+                    <div class="modal-footer">
+                        <button type="submit" class="b-tag btn btn-success" style="color: black">Login</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:black">Cancel</button>
+                    </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:black">Cancel</button>
-            </div>
+            
+            
         </div>
     </div>
 </div>

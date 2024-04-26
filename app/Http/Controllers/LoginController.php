@@ -33,7 +33,7 @@ class LoginController extends Controller
             }
         } else {
            
-            return redirect()->back()->with('success','Invalid credentials. Please try again.');
+            return redirect()->back()->with('error','Invalid credentials. Please try again.');
         
         }
 
