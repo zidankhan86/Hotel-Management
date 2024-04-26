@@ -44,9 +44,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-
         Auth::logout();
-
         return redirect()->route('home');
 
     }
@@ -88,8 +86,5 @@ class LoginController extends Controller
 
     }
 
-    public function showLoginFormFrontend()
-    {
-        return view('backend.pages.auth.loginFrontend');
-    }
+    
 }

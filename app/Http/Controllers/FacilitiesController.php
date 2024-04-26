@@ -37,32 +37,22 @@ class FacilitiesController extends Controller
         ]);
 
         return back()->with('success', 'Facilities created successfully!!');
-    }
+        }
 
-    public function edit($id)
-    {
-        $facility = facilities::findOrFail($id);
+        public function edit($id)
+        {
+            $facility = facilities::findOrFail($id);
 
-        return view('backend.features_and_facilities.edit-facilities', compact('facility'));
-    }
+            return view('backend.features_and_facilities.edit-facilities', compact('facility'));
+        }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, facilities $facilities)
-    {
-        //
-    }
+   
+        public function facilities_delete($id)
+        {
+            $delete = facilities::find($id);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function facilities_delete($id)
-    {
-        $delete = facilities::find($id);
+            $delete->delete();
 
-        $delete->delete();
-
-        return back()->with('success', 'Facilities deleted successfully!!');
+            return back()->with('success', 'Facilities deleted successfully!!');
     }
 }

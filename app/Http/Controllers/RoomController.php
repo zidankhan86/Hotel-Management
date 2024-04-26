@@ -29,18 +29,18 @@ class RoomController extends Controller
 
         $validator = Validator::make($request->all(), [
 
-            'category_name' => 'required',
-            'area' => 'required',
-            'price' => 'required',
-            'total_rooms' => 'required',
-            'adult' => 'required',
-            'children' => 'required',
-            'description' => 'required',
-            'image' => 'required',
-            'status' => 'required',
-            'features_id' => 'nullable',
-            'facilities_id' => 'nullable',
-            'branch_id' => 'required',
+            'category_name'     => 'required',
+            'area'              => 'required',
+            'price'             => 'required',
+            'total_rooms'       => 'required',
+            'adult'             => 'required',
+            'children'          => 'required',
+            'description'       => 'required',
+            'image'             => 'required',
+            'status'            => 'required',
+            'features_id'       => 'nullable',
+            'facilities_id'     => 'nullable',
+            'branch_id'         => 'required',
 
         ]);
 
@@ -53,17 +53,17 @@ class RoomController extends Controller
         $request->file('image')->move(public_path('uploads'), $imageName);
         //dd($imageName);
         $room = Room::create([
-            'category_name' => $request->category_name,
-            'area' => $request->area,
-            'price' => $request->price,
-            'total_rooms' => $request->total_rooms,
-            'available_rooms' => $request->total_rooms,
-            'adult' => $request->adult,
-            'children' => $request->children,
-            'description' => $request->description,
-            'image' => $imageName,
-            'status' => $request->status,
-            'branch_id' => $request->branch_id,
+            'category_name'     => $request->category_name,
+            'area'              => $request->area,
+            'price'             => $request->price,
+            'total_rooms'       => $request->total_rooms,
+            'available_rooms'   => $request->total_rooms,
+            'adult'             => $request->adult,
+            'children'          => $request->children,
+            'description'       => $request->description,
+            'image'             => $imageName,
+            'status'            => $request->status,
+            'branch_id'         => $request->branch_id,
         ]);
 
         if ($request->has('features_id')) {
@@ -131,11 +131,4 @@ class RoomController extends Controller
         return back()->with('success', 'Room updated successfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Room $room)
-    {
-        //
-    }
 }

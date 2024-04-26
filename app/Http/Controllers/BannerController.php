@@ -12,9 +12,9 @@ class BannerController extends Controller
     public function bannerStore(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'description' => 'required',
-            'tittle' => 'nullable',
-            'image' => 'required',
+            'description'   => 'required',
+            'tittle'        => 'nullable',
+            'image'         => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -33,9 +33,9 @@ class BannerController extends Controller
         //dd($request->all());
 
         Banner::create([
-            'description' => $request->description,
-            'tittle' => $request->tittle,
-            'image' => $imageName,
+            'description'   => $request->description,
+            'tittle'        => $request->tittle,
+            'image'         => $imageName,
 
         ]);
 
@@ -49,7 +49,6 @@ class BannerController extends Controller
 
         if ($banner) {
             $banner->delete();
-
             return redirect()->back()->with('success', 'Hero banner deleted successfully!');
         }
 
@@ -59,17 +58,15 @@ class BannerController extends Controller
 
     public function banneredit($id)
     {
-
         $edit = Banner::find($id);
-
         return view('backend.pages.banner.edit', compact('edit'));
     }
 
     public function bannerupdate(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'tittle' => 'nullable',
-            'image' => 'required',
+            'tittle'    => 'nullable',
+            'image'     => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -84,9 +81,9 @@ class BannerController extends Controller
 
         $update = Banner::find($id);
         $update->update([
-            'description' => $request->description,
-            'tittle' => $request->tittle,
-            'image' => $imageName,
+            'description'   => $request->description,
+            'tittle'        => $request->tittle,
+            'image'         => $imageName,
         ]);
 
         Alert::toast()->success('Banner Updated');

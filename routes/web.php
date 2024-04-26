@@ -35,6 +35,8 @@ Route::get('/room-page', [FrontendRoomController::class, 'room_page'])->name('ro
 Route::get('/contact-page', [ContactController::class, 'contact_us'])->name('contact.page');
 Route::post('/contact-page-store', [ContactController::class, 'contact_store'])->name('contact.store');
 Route::get('/about-page', [AboutController::class, 'about_page'])->name('about.page');
+
+//SSLCommerze API
 Route::post('/success', [SslCommerzPaymentController::class, 'success']);
 Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
 Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
