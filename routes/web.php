@@ -45,7 +45,6 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 //Middleware for check valid user
 Route::group(['middleware' => 'customerAuth'], function () {
     Route::get('/room-details-page/{id}', [FrontendRoomController::class, 'room_details_page'])->name('room.details.page');
-    Route::post('/Check-Room-Availability', [RoomAvailabilityController::class, 'CheckRoomAvailability'])->name('room.availability');
     Route::post('/pay', [SslCommerzPaymentController::class, 'index'])->name('pay.now');
   
 });

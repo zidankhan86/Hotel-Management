@@ -41,6 +41,7 @@ class RoomController extends Controller
             'features_id'       => 'nullable',
             'facilities_id'     => 'nullable',
             'branch_id'         => 'required',
+            'room_number'       => 'required',
 
         ]);
 
@@ -64,6 +65,7 @@ class RoomController extends Controller
             'image'             => $imageName,
             'status'            => $request->status,
             'branch_id'         => $request->branch_id,
+            'room_number'       => $request->room_number
         ]);
 
         if ($request->has('features_id')) {
@@ -109,15 +111,16 @@ class RoomController extends Controller
 
         // Update room details
         $room->update([
-            'category_name' => $request->category_name,
-            'area' => $request->area,
-            'price' => $request->price,
-            'total_rooms' => $request->total_rooms,
-            'available_rooms' => $request->total_rooms,
-            'adult' => $request->adult,
-            'children' => $request->children,
-            'description' => $request->description,
-            'status' => $request->status,
+            'category_name'     => $request->category_name,
+            'area'              => $request->area,
+            'price'             => $request->price,
+            'total_rooms'       => $request->total_rooms,
+            'available_rooms'   => $request->total_rooms,
+            'adult'             => $request->adult,
+            'children'          => $request->children,
+            'description'       => $request->description,
+            'status'            => $request->status,
+            'room_number'       => $request->room_number
         ]);
 
         // Handle image update

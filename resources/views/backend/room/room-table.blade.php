@@ -99,7 +99,8 @@
             </div>
           </div>
 
-          <div class="col-md-12 mb-3">
+          <div class="row">
+          <div class="col-md-6 mb-3">
             <label class="col-form-label">Select Branch</label>
             <select name="branch_id" class="form-control">
               <option name="" id="">Select a Branch </option>
@@ -108,6 +109,14 @@
                 @endforeach
             </select>
         </div>
+        <div class="col-md-6 mb-3">
+          <label for="recipient-name" class="col-form-label">Room No.</label>
+          <input type="number" class="form-control" id="recipient-name" name="room_number" placeholder="501">
+          @error('room_number')
+              <p class="text-danger">{{$message}}</p>
+          @enderror
+        </div>
+      </div>
         
 
           <div class="row">
@@ -234,6 +243,7 @@
                                 <input type="number" class="form-control" id="edit_quantity" name="total_rooms" value="{{$room->total_rooms}}">
                             </div>
                         </div>
+                        
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="edit_adult" class="col-form-label">Adult(Max.)</label>
