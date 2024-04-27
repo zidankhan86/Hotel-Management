@@ -19,6 +19,7 @@ class RoomController extends Controller
     {
 
         $room_details = Room::find($id);
+        Room::with('branch')->get();
 
         return view('frontend.room.room-details', compact('room_details'));
     }

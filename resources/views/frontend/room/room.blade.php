@@ -81,7 +81,7 @@
                                     
                                     <tr>
                                         <td class="r-o">Size:</td>
-                                        <td>{{$item->area}}</td>
+                                        <td><strong style="color: black">{{$item->area}}</strong></td>
                                     </tr>
                                     <tr>
                                         <td class="r-o">Capacity:</td>
@@ -98,9 +98,9 @@
                                 </tbody>
                             </table>
                             <a href="{{route('room.details.page',$item->id)}}" class="primary-btn">More Details</a>
-                        </div>
+                        </div> 
                     </div>
-                </div>
+                </div> 
                 @endforeach
 
                 

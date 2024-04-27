@@ -40,6 +40,10 @@
                         <table>
                             <tbody>
                                 <tr>
+                                    <td class="r-o">Branch:</td>
+                                    <td>{{$room_details->branch->branch_name}}</td>
+                                </tr>
+                                <tr>
                                     <td class="r-o">Size:</td>
                                     <td>{{$room_details->area}}</td>
                                 </tr>
@@ -71,6 +75,7 @@
                     <form action="{{ route('pay.now',$room_details->id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="room_id" value="{{ $room_details->id }}">
+
                         <div class="check-date">
                             <label for="total_rooms">Total Room:</label>
                             <input type="number" min="1" id="total_rooms" name="total_rooms" placeholder="Total Room Quantity">
@@ -78,6 +83,7 @@
                                 <p class="text-danger">{{$message}}</p>
                             @enderror
                         </div>
+
                         <div class="check-date">
                             <label for="date-in">Check In:</label>
                             <input type="text" class="date-input" id="date-in" name="check_in_date" placeholder="Select check-in date" autocomplete="off">
