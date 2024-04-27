@@ -15,10 +15,10 @@ class RoomController extends Controller
 {
     public function index()
     {
-        $features = Features::all();
-        $facilities = facilities::all();
-        $branch = Branch::all();
-        $rooms = Room::simplePaginate(8);
+        $features       = Features::all();
+        $facilities     = facilities::all();
+        $branch         = Branch::all();
+        $rooms          = Room::simplePaginate(8);
         Room::with('branch')->get();
 
         return view('backend.room.room-table', compact('features', 'facilities', 'rooms', 'branch'));
@@ -28,7 +28,6 @@ class RoomController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-
             'category_name'     => 'required',
             'area'              => 'required',
             'price'             => 'required',
@@ -41,8 +40,6 @@ class RoomController extends Controller
             'features_id'       => 'nullable',
             'facilities_id'     => 'nullable',
             'branch_id'         => 'required',
-            'room_number'       => 'required',
-
         ]);
 
         if ($validator->fails()) {
@@ -65,7 +62,6 @@ class RoomController extends Controller
             'image'             => $imageName,
             'status'            => $request->status,
             'branch_id'         => $request->branch_id,
-            'room_number'       => $request->room_number
         ]);
 
         if ($request->has('features_id')) {
@@ -95,14 +91,14 @@ class RoomController extends Controller
     public function update(Request $request, Room $room)
     {
         $validator = Validator::make($request->all(), [
-            'category_name' => 'required',
-            'area' => 'required',
-            'price' => 'required',
-            'total_rooms' => 'required',
-            'adult' => 'required',
-            'children' => 'required',
-            'description' => 'required',
-            'status' => 'required',
+            'category_name'     => 'required',
+            'area'              => 'required',
+            'price'             => 'required',
+            'total_rooms'       => 'required',
+            'adult'             => 'required',
+            'children'          => 'required',
+            'description'       => 'required',
+            'status'            => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -120,7 +116,6 @@ class RoomController extends Controller
             'children'          => $request->children,
             'description'       => $request->description,
             'status'            => $request->status,
-            'room_number'       => $request->room_number
         ]);
 
         // Handle image update

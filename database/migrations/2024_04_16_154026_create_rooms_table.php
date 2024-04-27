@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('price');
             $table->string('adult');
             $table->string('children');
-            $table->string('room_number')->nullable();
             $table->longText('description');
             $table->string('image')->nullable();
             $table->boolean('status');

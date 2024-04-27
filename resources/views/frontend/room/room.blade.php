@@ -78,10 +78,7 @@
                             <h2>{{$item->price}} tk<span>/Pernight</span></h2>
                             <table>
                                 <tbody>
-                                    <tr>
-                                        <td class="r-o">Room No:</td>
-                                        <td>{{$item->room_number}}</td>
-                                    </tr>
+                                    
                                     <tr>
                                         <td class="r-o">Size:</td>
                                         <td>{{$item->area}}</td>
