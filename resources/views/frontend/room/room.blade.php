@@ -71,7 +71,7 @@
             <div class="row">
 
                 @foreach ($rooms as $item)
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6"> <br>
                     <div class="hp-room-item set-bg" data-setbg="{{url('/uploads/'.$item->image)}}">
                         <div class="hr-text">
                             <h3>{{$item->category_name}}</h3>
