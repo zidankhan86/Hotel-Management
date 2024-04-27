@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 //profile
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+
+
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 //Registration
@@ -47,6 +49,7 @@ Route::group(['middleware' => 'customerAuth'], function () {
     Route::get('/room-details-page/{id}', [FrontendRoomController::class, 'room_details_page'])->name('room.details.page');
     Route::post('/pay', [SslCommerzPaymentController::class, 'index'])->name('pay.now');
     Route::get('/cancel/{id}',[SslCommerzPaymentController::class,'cancelStatus'])->name('cancel.hotel');
+    Route::get('/invoice/{id}', [ProfileController::class, 'invoice'])->name('invoice');
   
 });
 
@@ -70,5 +73,6 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function(
     Route::put('/Booking-Status/{id}', [OrderController::class, 'StatusUpdate'])->name('booking.status');
     Route::get('/contact-list',[ContactController::class,'contactlist'])->name('contact.list');
     Route::get('/contact-view/{id}',[ContactController::class,'contactview'])->name('contact.view');
+    Route::get('/invoice/backend/{id}', [ProfileController::class, 'invoiceBackend'])->name('invoice.backend');
 
 });

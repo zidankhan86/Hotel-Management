@@ -25,6 +25,7 @@
                                     <th scope="col">Note</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
+                                    <th scope="col">Invoice</th>
 
 
                                 </tr>
@@ -60,6 +61,8 @@
                                                         class="dropdown-item"><i class="fas fa-edit"></i> Action</a></li>
                                                 
                                             </ul>
+
+                                        <td><a href="{{route('invoice.backend',$item->id)}}" class="btn btn-info">invoice</a></td>
                                         </div>
                                     </td>
                                 </tr>
@@ -86,10 +89,7 @@
                     @method('PUT')
                     @csrf
 
-
                     <div class="row">
-
-
                         <div class="col-md-12 mb-3">
                             <label for="edit_status" class="col-form-label">Status</label>
                             <select name="status" id="edit_status" class="form-control">
