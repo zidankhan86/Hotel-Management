@@ -17,11 +17,11 @@ class RoomController extends Controller
     {
         $features       = Features::all();
         $facilities     = facilities::all();
-        $branch         = Branch::all();
+        $branches         = Branch::all();
         $rooms          = Room::simplePaginate(8);
         Room::with('branch')->get();
 
-        return view('backend.room.room-table', compact('features', 'facilities', 'rooms', 'branch'));
+        return view('backend.room.room-table', compact('features', 'facilities', 'rooms', 'branches'));
     }
 
     public function store(Request $request)

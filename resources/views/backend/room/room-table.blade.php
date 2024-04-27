@@ -104,7 +104,7 @@
             <label class="col-form-label">Select Branch</label>
             <select name="branch_id" class="form-control">
               <option name="" id="">Select a Branch </option>
-                @foreach ($branch as $branch)
+                @foreach ($branches as $branch)
                 <option value="{{ $branch->id }}">{{ $branch->branch_name ?? ''}}</option>
                 @endforeach
             </select>
@@ -226,6 +226,17 @@
                                 <input type="text" class="form-control" id="edit_area" name="area" value="{{$room->area}}">
                             </div>
                         </div>
+
+                        <div class="col-md-12 mb-3">
+                            <label class="col-form-label">Select Branch</label>
+                            <select name="branch_id" class="form-control">
+                                <option value="">Select a Branch</option>
+                                @foreach ($branches as $branch)
+                                    <option value="{{ $branch->id }}" {{ $room->branch_id == $branch->id ? 'selected' : '' }}>{{ $branch->branch_name ?? '' }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
                       
                         <div class="row">
                             <div class="col-md-6 mb-3">
