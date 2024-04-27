@@ -53,7 +53,7 @@ class SslCommerzPaymentController extends Controller
            
        
         $post_data = array();
-        $post_data['total_amount'] = $room->price;
+        $post_data['total_amount'] = $room->price * $total_rooms;
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = uniqid(); // tran_id must be unique
 
