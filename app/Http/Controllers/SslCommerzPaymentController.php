@@ -220,6 +220,12 @@ class SslCommerzPaymentController extends Controller
 
     }
 
-    
+    public function cancelStatus($id) {
+       
+            $book = Booking::findOrFail($id);
+            $book->update(['status' => 'Canceled']);
+
+        return redirect()->back()->with('success','Cancelled .');
+    }
 
 }

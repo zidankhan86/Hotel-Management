@@ -167,7 +167,6 @@ mark {
                    
                     @foreach ($booked_hotel as $item)
 
-
                     <ul style="list-style: none; padding: 0; text-align: left;">
                         <li>
                             <strong style="color: blue;">Booking Name -</strong> - {{ $item->room->category_name }}<br>
@@ -177,7 +176,7 @@ mark {
                         </li>
                         <p style="color: blue;">Order Status -<small style="color: blue;">{{ $item->status }}</small></p>
                         @if($item->status == 'Pending')
-                        <a href="#" style="color: black" class="genric-btn danger circle">Cancel Booking</a>
+                        <br><a href="{{route('cancel.hotel',$item->id)}}" class="btn btn-danger">Cancel Booking</a>
                     @elseif($item->status == 'Canceled')
                         <button class="genric-btn danger circle" style="color: blue;">Booking Canceled</button>
                     @endif

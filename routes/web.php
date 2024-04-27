@@ -46,6 +46,7 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 Route::group(['middleware' => 'customerAuth'], function () {
     Route::get('/room-details-page/{id}', [FrontendRoomController::class, 'room_details_page'])->name('room.details.page');
     Route::post('/pay', [SslCommerzPaymentController::class, 'index'])->name('pay.now');
+    Route::get('/cancel/{id}',[SslCommerzPaymentController::class,'cancelStatus'])->name('cancel.hotel');
   
 });
 
