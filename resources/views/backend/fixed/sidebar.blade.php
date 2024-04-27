@@ -32,6 +32,11 @@
                      
                     </nav>
                 </div>
+                <a class="nav-link" href="{{route('contact.list')}}">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-message"></i></div>
+                    Feedback
+                </a>
+
                 <a class="nav-link" href="{{route('booking.list')}}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
                     Booking

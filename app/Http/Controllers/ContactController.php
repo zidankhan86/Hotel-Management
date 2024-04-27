@@ -19,9 +19,9 @@ class ContactController extends Controller
         // dd($request->all());
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'message' => 'required',
+            'name'      => 'required',
+            'email'     => 'required|email',
+            'message'   => 'required',
         ]);
 
         // If validation fails, redirect back with error messages
@@ -31,13 +31,27 @@ class ContactController extends Controller
 
         Contact::create([
 
-            'name' => $request->name,
-            'email' => $request->email,
-            'message' => $request->message,
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'message'   => $request->message,
 
         ]);
 
         return back()->with('success', 'Thank you for your feedback.');
 
+    }
+
+    public function contactlist(){
+
+        $feedback = Contact::all();
+
+        return view('backend.contact.contact-list',compact('feedback'));
+    }
+
+    public function contactview($id){
+
+        $messages = Contact::find($id);
+
+        return view('backend.contact.contact-view',compact('messages'));
     }
 }

@@ -68,5 +68,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function(
     Route::get('/about-delete/{id}', [AboutController::class, 'about_delete'])->name('about.delete');
     Route::get('/booking-list', [OrderController::class, 'booking_list'])->name('booking.list');
     Route::put('/Booking-Status/{id}', [OrderController::class, 'StatusUpdate'])->name('booking.status');
+    Route::get('/contact-list',[ContactController::class,'contactlist'])->name('contact.list');
+    Route::get('/contact-view/{id}',[ContactController::class,'contactview'])->name('contact.view');
 
 });
