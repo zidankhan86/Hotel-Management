@@ -1,19 +1,26 @@
 @extends('backend.index')
 @section('content')
 
-<div class="container">
-    <div class="container">
-        <div class="container">
-            <div class="container">
-                <div class="container">
-                    <div class="container">
-                        <br>
-                        <h4 class="text-success text-center">Booking List</h4>
-                        <br>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Serial</th>
+
+<div>
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Booking List</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="{{url('/admin')}}">Dashboard</a></li>
+                <li class="breadcrumb-item active">Booking List</li>
+            </ol>
+           
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Booking List
+                </div>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th scope="col">Serial</th>
                                     <th scope="col"> Check In</th>
                                     <th scope="col"> Check Out</th>
                                     <th scope="col"> Name</th>
@@ -26,55 +33,58 @@
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                     <th scope="col">Invoice</th>
+                            </tr>
+                        </thead>
+                     
+                        <tbody>
+                            @php
+                            $id = 1;
+                            @endphp
 
+                            @foreach ($orders as $item)
+                            <tr>
+                                <th scope="row">#{{ $id++ }}</th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                $id = 1;
-                                @endphp
+                                <td>{{ date('d M Y', strtotime($item->check_in)) }}</td>
+                                <td>{{ date('d M Y', strtotime($item->check_out)) }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->room?->category_name }}</td>
+                                <td>{{ $item->room?->price }} Tk.</td>
+                                <td>{{ $item->user?->email }}</td>
+                                <td>{{ $item->address }}</td>
+                                <td>{{ $item->phone }}</td>
+                                <td>{{ $item->note }}</td>
+                                <td>{{ $item->status }}</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-danger dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            Action
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#editModal{{$item->id}}"
+                                                    class="dropdown-item"><i class="fas fa-edit"></i> Action</a></li>
+                                            
+                                        </ul>
 
-                                @foreach ($orders as $item)
-                                <tr>
-                                    <th scope="row">#{{ $id++ }}</th>
-
-                                    <td>{{ date('d M Y', strtotime($item->check_in)) }}</td>
-                                    <td>{{ date('d M Y', strtotime($item->check_out)) }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->room?->category_name }}</td>
-                                    <td>{{ $item->room?->price }} Tk.</td>
-                                    <td>{{ $item->user?->email }}</td>
-                                    <td>{{ $item->address }}</td>
-                                    <td>{{ $item->phone }}</td>
-                                    <td>{{ $item->note }}</td>
-                                    <td>{{ $item->status }}</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-danger dropdown-toggle"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                Action
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#editModal{{$item->id}}"
-                                                        class="dropdown-item"><i class="fas fa-edit"></i> Action</a></li>
-                                                
-                                            </ul>
-
-                                        <td><a href="{{route('invoice.backend',$item->id)}}" class="btn btn-info">invoice</a></td>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                    <td><a href="{{route('invoice.backend',$item->id)}}" class="btn btn-info">invoice</a></td>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                           
+                            
+                           
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+    
 </div>
+
 @foreach ($orders as $item)
 <div class="modal fade" id="editModal{{$item->id}}" tabindex="-1" aria-labelledby="editModal{{$item->id}}Label"
     aria-hidden="true">
