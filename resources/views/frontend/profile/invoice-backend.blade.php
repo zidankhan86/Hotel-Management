@@ -28,7 +28,7 @@
                                 <h5 class="font-size-16 mb-3">Billed To:</h5>
                                 <h5 class="font-size-15 mb-2">{{$inv->name}}</h5>
                                 <p class="mb-1">{{$inv->address}}</p>
-                                
+
                                 <p>{{$inv->phone}}</p>
                             </div>
                         </div>
@@ -52,9 +52,9 @@
                         <!-- end col -->
                     </div>
                     <!-- end row -->
-                    
+
                     <div class="py-2">
-                        <h5 class="font-size-15">Order Summary</h5>
+                        <h5 class="font-size-15">Booking Summary</h5>
 
                         <div class="table-responsive">
                             <table class="table align-middle table-nowrap table-centered mb-0">
@@ -62,6 +62,7 @@
                                     <tr>
                                         <th style="width: 70px;">No.</th>
                                         <th>Item</th>
+                                        <th>Branch</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
                                         <th class="text-end" style="width: 120px;">Total</th>
@@ -73,21 +74,27 @@
                                         <td>
                                             <div>
                                                 <h5 class="text-truncate font-size-14 mb-1">{{ $inv->name }}</h5>
-                                               
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h5 class="text-truncate font-size-14 mb-1">{{ $inv->branch_name }}</h5>
+
                                             </div>
                                         </td>
                                         <td>{{ $inv->price }} Taka</td>
                                         <td>{{ $inv->total_rooms }}</td>
                                         <td class="text-end">{{ $inv->price }} Taka</td>
                                     </tr>
-                                   
+
                                 </tbody><!-- end tbody -->
                             </table><!-- end table -->
                         </div><!-- end table responsive -->
                         <div class="d-print-none mt-4">
                             <div class="float-end">
                                 <a href="javascript:window.print()" class="btn btn-success me-1"><i class="fa fa-print"></i></a>
-                               
+
                             </div>
                         </div>
                     </div>

@@ -24,34 +24,35 @@ class SslCommerzPaymentController extends Controller
 
     public function index(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'name'           => 'required',
             'check_in_date'  => 'required',
-            'check_out_date' => 'required|after:check_in_date',      
+            'check_out_date' => 'required|after:check_in_date',
             'address'        => 'required',
             'phone'          => 'required',
             'note'           => 'required',
             'total_rooms'    => 'required',
         ]);
-        
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        
-       
+
+
         $room_id = $request->input('room_id');
         $check_in_date = date('Y-m-d H:i:s', strtotime($request->input('check_in_date')));
         $check_out_date = date('Y-m-d H:i:s', strtotime($request->input('check_out_date')));
         $total_rooms = $request->input('total_rooms');
-     
+
 
         // Get the room details
         $room = Room::find($room_id);
 
         // Check if the room has enough available rooms for the booking
         if ($room->available_rooms >= $total_rooms) {
-           
-       
+
+
         $post_data = array();
         $post_data['total_amount'] = $room->price * $total_rooms;
         $post_data['currency'] = "BDT";
@@ -59,6 +60,7 @@ class SslCommerzPaymentController extends Controller
 
         # CUSTOMER INFORMATION
         $post_data['cus_name'] = $request->name;
+        $post_data['branch_name'] = $room->branch->branch_name;
         $post_data['room_id'] = $request->room_id;
         $post_data['check_in'] = $check_in_date;
         $post_data['check_out'] = $check_out_date;
@@ -66,7 +68,7 @@ class SslCommerzPaymentController extends Controller
         $post_data['user_id'] = auth()->user()->id;
         $post_data['note'] = $request->note;
         $post_data['total_rooms'] = $request->total_rooms;
-       
+
         $post_data['cus_add1'] = $request->address;
         $post_data['cus_add2'] = "";
         $post_data['cus_city'] = "";
@@ -96,7 +98,7 @@ class SslCommerzPaymentController extends Controller
         $post_data['value_b'] = "ref002";
         $post_data['value_c'] = "ref003";
         $post_data['value_d'] = "ref004";
-
+        //dd($request->all);
         #Before  going to initiate the payment order status need to insert or update as Pending.
         $update_product = DB::table('bookings')
             ->where('transaction_id', $post_data['tran_id'])
@@ -114,7 +116,8 @@ class SslCommerzPaymentController extends Controller
                 'status' => 'Pending',
                 'address' => $post_data['cus_add1'],
                 'transaction_id' => $post_data['tran_id'],
-                'currency' => $post_data['currency']
+                'currency' => $post_data['currency'],
+                'branch_name' => $post_data['branch_name']
             ]);
 
         $sslc = new SslCommerzNotification();
@@ -125,14 +128,14 @@ class SslCommerzPaymentController extends Controller
             print_r($payment_options);
             $payment_options = array();
         }
-        
+
         return redirect()->route('home')->with('success', 'Booking successful');
     } else {
         return back()->with('error', 'No room available');
     }
     }
 
-   
+
 
     public function success(Request $request)
     {
@@ -221,7 +224,7 @@ class SslCommerzPaymentController extends Controller
     }
 
     public function cancelStatus($id) {
-       
+
             $book = Booking::findOrFail($id);
             $book->update(['status' => 'Canceled']);
 

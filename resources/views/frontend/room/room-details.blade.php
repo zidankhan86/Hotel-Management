@@ -31,9 +31,9 @@
                             <h3>{{$room_details->category_name}}</h3>
                             <div class="rdt-right">
                                 <div class="rating">
-                                 
+
                                 </div>
-                                
+
                             </div>
                         </div>
                         <h2>{{$room_details->price}} tk<span>/Pernight</span></h2>
@@ -64,10 +64,10 @@
                             </tbody>
                         </table>
                         <p class="f-para">{!!$room_details->description!!}</p>
-                        
+
                     </div>
                 </div>
-              
+
             </div>
             <div class="col-lg-4">
                 <div class="room-booking">
@@ -100,7 +100,7 @@
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                         </div>
-                    
+
                         <div class="check-date">
                             <label for="name">Name:</label>
                             <input type="text" id="name" name="name" placeholder="Your Name">
@@ -129,10 +129,11 @@
                     <input type="hidden" name="transaction_id">
                     <input type="hidden" name="currency">
                     <input type="hidden" name="price" value="{{$room_details->price}}">
+                    <input type="hidden" name="price" value="{{$room_details->branch->branch_name}}">
                         <button type="submit">Confirm Booking</button>
                     </form>
-                    
-                    
+
+
                 </div>
             </div>
         </div>

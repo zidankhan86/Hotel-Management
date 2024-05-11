@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('transaction_id');
             $table->string('currency');
             $table->string('price');
+            $table->string('branch_name');
             $table->string('email');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
