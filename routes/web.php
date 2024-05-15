@@ -12,11 +12,13 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoomAvailabilityController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use Illuminate\Support\Facades\Route;
+
 
 //profile
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
@@ -74,5 +76,8 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function(
     Route::get('/contact-list',[ContactController::class,'contactlist'])->name('contact.list');
     Route::get('/contact-view/{id}',[ContactController::class,'contactview'])->name('contact.view');
     Route::get('/invoice/backend/{id}', [ProfileController::class, 'invoiceBackend'])->name('invoice.backend');
+    Route::get('/report/search', [ReportController::class,'reportSearch'])->name('order.report.search');
+    Route::get('/report', [ReportController::class, 'report'])->name('report');
+    
 
 });

@@ -41,6 +41,12 @@
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
                     Booking
                 </a>
+
+                 <a class="nav-link" href="{{route('report')}}">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa fa-file"></i></div>
+                    Report
+                </a>
+
                 <a class="nav-link" href="{{route('setting.index')}}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-gears"></i></div>
                     Setting

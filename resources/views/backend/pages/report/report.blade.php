@@ -1,73 +1,79 @@
-@extends('backend.master')
+@extends('backend.index')
 
 @section('content')
 
-<h1>Order Report</h1>
+<h1>Booking Report</h1>
 
 <form action="{{route('order.report.search')}}" method="get">
 
-<div class="row">
-    <div class="col-md-4">
-        <label for="">From date:</label>
-        <input name="from_date" type="date" class="form-control">
-
+<div class="container">
+        <div class="row align-items-end">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="from_date">From date:</label>
+                    <input name="from_date" type="date" class="form-control" id="from_date">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="to_date">To date:</label>
+                    <input name="to_date" type="date" class="form-control" id="to_date">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-success btn-block">Search</button>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <label for="">To date:</label>
-        <input name="to_date" type="date" class="form-control">
-    </div>
-    <div class="col-md-4">
-        <button type="submit" class="btn btn-success">Search</button>
-    </div>
-</div>
 
 </form>
 <div id="orderReport">
 
-<h1>Order Reports- {{date('Y-m-d')}}</h1>
+<h1>Booking Reports- {{date('Y-m-d')}}</h1>
     <table class="table table-striped">
         <thead>
         <tr>
 
-            <th scope="col">Serial</th>
-            <th scope="col">Product Name</th>
-            <th scope="col">Total</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">City</th>
-            <th scope="col">Address</th>
-            <th scope="col">Postcode</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Email</th>
-            <th scope="col">Note</th>
-            <th scope="col">Status</th>
+                                    <th scope="col">Serial</th>
+                                    <th scope="col"> Check In</th>
+                                    <th scope="col"> Check Out</th>
+                                    <th scope="col"> Name</th>
+                                    <th scope="col"> Room Type</th>
+                                    <th scope="col"> Price</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Note</th>
+                                    <th scope="col">Status</th>
+                                 
           
 
-        </tr>
-        </thead>
-        <tbody>
+                </tr>
+                </thead>
+                <tbody>
+                        @php
+                        $id = 1;
+                        @endphp
 
-
-        @if(isset($orders))
-        @foreach($orders as $key=>$order)
-        <tr>
-
-            <th scope="row">{{ $key+1 }}</th>
-            <td>{{ $order->name }}</td>
-            <td>{{ $order->total_price }} Tk.</td>
-            <td>{{ $order->first_name }}</td>
-            <td>{{ $order->last_name }}</td>
-            <td>{{ $order->address }}</td>
-            <td>{{ $order->city }}</td>
-            <td>{{ $order->postcode }}</td>
-            <td>{{ $order->phone }}</td>
-            <td>{{ $order->email }}</td>
-            <td>{{ $order->note }}</td>
-            <td class="text-danger">Processing</td>
-
-        </tr>
-        @endforeach
-        @endif
+                        @foreach ($booking as $item)
+                        <tr>
+                            <th scope="row">#{{ $id++ }}</th>
+                            <td>{{ date('d M Y', strtotime($item->check_in)) }}</td>
+                            <td>{{ date('d M Y', strtotime($item->check_out)) }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->room?->category_name }}</td>
+                            <td>{{ $item->room?->price }} Tk.</td>
+                            <td>{{ $item->user?->email }}</td>
+                            <td>{{ $item->address }}</td>
+                            <td>{{ $item->phone }}</td>
+                            <td>{{ $item->note }}</td>
+                            <td>{{ $item->status }}</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">
+                             
+                            </td>
+                        </tr>
+                        @endforeach
+      
         </tbody>
     </table>
 </div>

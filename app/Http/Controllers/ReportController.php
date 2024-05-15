@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
+
+use App\Models\Booking;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class ReportController extends Controller
 {
     public function report()
     {
         //dd('yes');
-        $oders = Order::all();
+        $booking = Booking::all();
 
-        return view('backend.pages.report.report', compact('oders'));
+        return view('backend.pages.report.report', compact('booking'));
     }
 
     public function reportSearch(Request $request)
@@ -38,9 +39,9 @@ class ReportController extends Controller
 
         //       $status=$request->status;
 
-        $orders = Order::whereBetween('created_at', [$from, $to])->get();
+        $booking = Booking::whereBetween('created_at', [$from, $to])->get();
 
-        return view('backend.pages.report.report', compact('orders'));
+        return view('backend.pages.report.report', compact('booking'));
 
     }
 }
